@@ -58,11 +58,14 @@ void *best_fit_alloc(size_t size)
 		return NULL;
 	}
 	Node_block* current_block = best_head;
-	Node_block* best_block = best_head;
+	Node_block* best_block;
+	best_block->block_size = (size_t)-1;
 	//calculate size
 	if(size % 4 != 0){
 		size = size + (4 - size % 4);
 	}
+
+	size = size + sizeof(Node_block);
 
 	while(current_block){
 		if(current_block->allocated == 0){
@@ -73,29 +76,45 @@ void *best_fit_alloc(size_t size)
 
 		current_block = current_block->next;
 	}
-
-	if(best_block->allocated == 1){
+	//if best node doesnt exit, return
+	if(best_block->block_size == (size_t)-1){
 		return NULL;
 	}
-	//update node blocks
-	if(size == best_block->block_size){
+
+	printf("allocted size %d in block %d\n", size, best_block);
+	//exact allocatikon
+	if(best_block->block_size == size){
 		best_block->allocated = 1;
-	} else {
-		Node_block* tmp = best_block;
-		//updated new block
+	}
+	//external fragementation
+	else if((best_block->block_size - size) <= sizeof(Node_block)){
+		printf("fragementation\n");
+		//run fragmentation count function
+		//updated old block
+		best_block->allocated = 1;
+	}
+	//split with new block
+	else {
+		//create new block
+		Node_block* new = (Node_block*)((size_t)best_block + size);
+		new->allocated = 0;
+		new->block_size = best_block->block_size - size;
+		//insert at the end of the linked list
+		if(best_block->next == NULL){
+			new -> next = NULL;
+			new -> prev = best_block;
+			best_block->next = new;
+		} 
+		//insert in the middle
+		else {
+			new -> next = best_block -> next;
+			new -> prev = best_block;
+			best_block -> next -> prev = new;
+		}
+		//updated old block
 		best_block->allocated = 1;
 		best_block->block_size = size;
-		//updated parent block
-		current_block = tmp + size;
-		current_block->allocated = 0;
-		current_block->block_size = tmp->block_size - size;
-		best_block->next = current_block;
-		tem->next->prev = current_block;
-		current_block->prev = best_block;
-		current_block->next = tmp->next;
 	}
-
-
 	return best_block;
 }
 
@@ -110,12 +129,39 @@ void *worst_fit_alloc(size_t size)
 void best_fit_dealloc(void *ptr) 
 {	
 	Node_block* current_block = best_head;
+	Node_block* prev_block;
+	Node_block* next_block;
 	int found = 0;
 	while(current_block) {
-		if()
+		if(current_block->allocated == 1 && (size_t)current_block == (size_t)ptr){
+			found = 1;
+			break;
+		}
 		current_block = current_block->next;
 	}
-	// To be completed by students
+	//didnt find the block, return
+	if(found == 0){
+		return;
+	}
+	//start dealloc
+	prev_block = current_block -> prev;
+	next_block = current_block -> next;
+	current_block -> allocated = 0;
+
+	if(next_block != NULL && next_block -> allocated == 0){
+		current_block -> next = next_block -> next;
+		current_block -> block_size += next_block -> block_size;
+		if(next_block -> next != NULL){
+			next_block -> next -> prev = current_block;
+		}
+	}
+	if(pre_block != NULL && pre_block -> allocated == 0){
+		current_block -> prev  = pre_block -> prev;
+		current_block -> block_size += pre_block -> block_size;
+		if(pre_block -> prev != NULL){
+			pre_block -> prev -> next = current_block;
+		}
+	}
 	return;
 }
 
@@ -131,8 +177,16 @@ void worst_fit_dealloc(void *ptr)
 /* count how many free blocks are less than the input size */ 
 int best_fit_count_extfrag(size_t size)
 {
-	// To be completed by students
-	return 0;
+	size = size + sizeof(Node_block);
+	int count = 0;
+	Node_block* current_block = best_head;
+	while(current_block){
+		if(current_block -> allocated == 0 && current_block -> block_size < size){
+			count++;
+		}
+		current_block = current_block->next;
+	}
+	return count;
 }
 
 int worst_fit_count_extfrag(size_t size)
