@@ -226,7 +226,8 @@ int main(int argc, char *argv[])
 		best_fit_memory_init(1024);	// initizae 1KB, best fit
 
 		p = best_fit_alloc(8);		// allocate 8B
-		printf("best fit: p=%p\n", p);
+		//printf("best fit: p=%p\n", p);
+		printf("best fit: p=%d\n", p);
 		if ( p != NULL ) {
 			best_fit_dealloc(p);	
 		}
