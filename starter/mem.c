@@ -212,7 +212,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Invalid argument, please specify 0 or 1\n");
 		exit(1);
 	}
-	
+	printf("nonon1\n");
 	if ( algo == 0 ) {
 		printf("nonon\n");
 		best_fit_memory_init(1024);	// initizae 1KB, best fit
@@ -224,7 +224,7 @@ int main(int argc, char *argv[])
 		}
 		num = best_fit_count_extfrag(4);
 	} else if ( algo == 1 ) {
-
+		printf("nonon2\n");
 		worst_fit_memory_init(1024);	// initizae 1KB, worst fit
 
 		q = worst_fit_alloc(8);		// allocate 8B
