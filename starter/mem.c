@@ -69,6 +69,8 @@ void *best_fit_alloc(size_t size)
 	}
 
 	printf("%d\n", size);
+	printf("%d\n", (size_t)-1);
+	printf("%d\n", sizeof(Node_block));
 
 	size = size + sizeof(Node_block);
 	printf("%d\n", size);
