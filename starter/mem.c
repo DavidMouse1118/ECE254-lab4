@@ -307,16 +307,16 @@ int main(int argc, char *argv[])
 	best_fit_memory_init(1024);
 	
 while (1) {
-
+	print_all_nodes_information_best();
 	void* four_1 =	best_fit_alloc(5);
 	printf("The return value of four_1 is: %d\n", four_1);
 	if (four_1 == NULL) {  break; }
 	
-	
+	print_all_nodes_information_best();
 	void* two_five_six_1 = best_fit_alloc(256);
   	printf("The return value of two_five_six_1 is: %d\n", two_five_six_1);
 	if (two_five_six_1 == NULL) { break; }
-	
+	print_all_nodes_information_best();
 	void* eight_1 = best_fit_alloc(9);
 	printf("The return value of eight_1 is: %d\n", eight_1);
 	if (eight_1 == NULL) { break; }
