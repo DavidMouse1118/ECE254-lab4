@@ -310,20 +310,20 @@ int main(int argc, char *argv[])
 	best_fit_memory_init(1024);
 	
 while (1) {
-	print_all_nodes_information_best();
+	//print_all_nodes_information_best();
 	void* four_1 =	best_fit_alloc(5);
 	printf("The return value of four_1 is: %d\n", four_1);
 	if (four_1 == NULL) {  break; }
 	
-	print_all_nodes_information_best();
+	//print_all_nodes_information_best();
 	void* two_five_six_1 = best_fit_alloc(256);
   	printf("The return value of two_five_six_1 is: %d\n", two_five_six_1);
 	if (two_five_six_1 == NULL) { break; }
-	print_all_nodes_information_best();
+	//print_all_nodes_information_best();
 	void* eight_1 = best_fit_alloc(300);
 	printf("The return value of eight_1 is: %d\n", eight_1);
 	if (eight_1 == NULL) { break; }
-	print_all_nodes_information_best();
+	//print_all_nodes_information_best();
 	void* one_two_eight_1 = best_fit_alloc(128);
 	printf("The return value of one_two_eight_1 is: %d\n", one_two_eight_1);
 	if (one_two_eight_1 == NULL) { break; }
@@ -341,15 +341,15 @@ while (1) {
 	if (thirty_two_1 == NULL) { break; }
 
 
-	best_fit_dealloc(eight_1);
-	print_all_nodes_information_best();
-	best_fit_dealloc(thirty_two_1);
-	print_all_nodes_information_best();
-	best_fit_dealloc(one_two_eight_1);
-	print_all_nodes_information_best();
+	//best_fit_dealloc(eight_1);
+	//print_all_nodes_information_best();
+	//best_fit_dealloc(thirty_two_1);
+	//print_all_nodes_information_best();
+	//best_fit_dealloc(one_two_eight_1);
+	//print_all_nodes_information_best();
 }
 
-print_all_nodes_information_best();
+print_all_nodes();
 
 int four_bf, eight_bf, sixteen_bf, thirtytwo_bf, sixtyfour_bf, onetwentyeight_bf, twofiftysix_bf;
 
