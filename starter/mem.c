@@ -124,14 +124,15 @@ void *best_fit_alloc(size_t size)
 		//insert at the end of the linked list
 		if(best_block->next == NULL){
 			new_block -> next = NULL;
+			best_block -> next = new_block;
 			new_block -> prev = best_block;
-			best_block->next = new_block;
 		} 
 		//insert in the middle
 		else {
 			new_block -> next = best_block -> next;
+			best_block -> next = new_block;
 			new_block -> prev = best_block;
-			best_block -> next -> prev = new_block;
+			new_block -> next -> prev = new_block;
 		}
 		//updated old block
 		best_block->allocated = 1;
