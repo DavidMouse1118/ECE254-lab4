@@ -63,8 +63,7 @@ void *best_fit_alloc(size_t size)
 
 	Node_block* best_block;
 	Node_block* new_block;
-	printf("%d\n", best_block->block_size);
-	
+
 	//calculate size
 	if(size % 4 != 0){
 		size = size + (4 - size % 4);
@@ -78,15 +77,20 @@ void *best_fit_alloc(size_t size)
 
 	while(current_block){
 		if(current_block->allocated == 0){
-			if(current_block->block_size >= size && current_block->block_size < best_block->block_size){
-				best_block = current_block;
+			if(current_block->block_size >= size){
+				if(!best_block){
+					best_block = current_block;
+				}
+				if (current_block->block_size < best_block->block_size){
+					best_block = current_block;
+				}
 			}
 		}
 
 		current_block = current_block->next;
 	}
 	//if best node doesnt exit, return
-	if(best_block->block_size == (size_t)-1){
+	if(!best_block){
 		return NULL;
 	}
 
