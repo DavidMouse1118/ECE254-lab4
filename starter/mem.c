@@ -35,6 +35,7 @@ int best_fit_memory_init(size_t size)
 	if(best_head == NULL){
 		return -1;
 	}
+	printf("allocated memory block start from%d\n", best_head);
 	best_head->allocated = 0;
 	best_head->block_size = size;
 	best_head->next = NULL;
