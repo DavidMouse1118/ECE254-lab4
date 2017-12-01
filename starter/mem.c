@@ -30,7 +30,7 @@ Node_block* best_head;
 int best_fit_memory_init(size_t size)
 {
 
-	best_head = malloc(size);
+	best_head = (Node_block*)malloc(size);
 	if(best_head == NULL){
 		return -1;
 	}
