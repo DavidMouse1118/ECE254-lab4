@@ -100,12 +100,20 @@ void *best_fit_alloc(size_t size)
 	//exact allocatikon
 	if(best_block->block_size == size){
 		best_block->allocated = 1;
+		printf("best_block\n");
+		printf("%d\n", (long)best_block-(long)best_head);
+		printf("%d\n", best_block->allocated);
+		printf("%d\n", best_block->block_size);
 	}
 	//internal fragementation
 	else if((best_block->block_size - size) <= sizeof(Node_block)){
 		printf("fragementation\n");
 		//updated old block
 		best_block->allocated = 1;
+		printf("best_block\n");
+		printf("%d\n", (long)best_block-(long)best_head);
+		printf("%d\n", best_block->allocated);
+		printf("%d\n", best_block->block_size);
 	}
 	//split with new block
 	else {
