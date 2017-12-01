@@ -61,6 +61,7 @@ int worst_fit_memory_init(size_t size)
 void *best_fit_alloc(size_t size)
 {
 	if(size == 0){
+		printf("size is too small, cannot be zero\n");
 		return NULL;
 	}
 	Node_block* current_block;
