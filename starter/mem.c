@@ -58,10 +58,11 @@ void *best_fit_alloc(size_t size)
 	if(size == 0){
 		return NULL;
 	}
-	Node_block* current_block = best_head;
+	Node_block* current_block;
 	Node_block* best_block;
 	Node_block* new_block;
-	best_block->block_size = (size_t)-1;
+	current_block = best_head;
+	current_block->block_size = (size_t)-1;
 	//calculate size
 	if(size % 4 != 0){
 		size = size + (4 - size % 4);
