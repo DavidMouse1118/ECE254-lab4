@@ -214,6 +214,7 @@ int main(int argc, char *argv[])
 	}
 	
 	if ( algo == 0 ) {
+		printf("nonon\n");
 		best_fit_memory_init(1024);	// initizae 1KB, best fit
 
 		p = best_fit_alloc(8);		// allocate 8B
