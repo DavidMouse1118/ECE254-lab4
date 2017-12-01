@@ -12,6 +12,7 @@
 #include "mem.h"
 
 /* defines */
+#define MAZ_SZ (~(size_t)0)
 
 /* global varaiables */
 struct Node_block {
@@ -69,7 +70,7 @@ void *best_fit_alloc(size_t size)
 	}
 
 	printf("%d\n", size);
-	printf("%d\n", SIZE_MAX);
+	printf("%d\n", MAZ_SZ);
 	printf("%d\n", sizeof(Node_block));
 
 	size = size + sizeof(Node_block);
