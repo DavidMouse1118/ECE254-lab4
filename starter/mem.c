@@ -339,6 +339,7 @@ while (1) {
 
 
 	best_fit_dealloc(eight_1);
+	print_all_nodes_information_best();
 	best_fit_dealloc(thirty_two_1);
 	print_all_nodes_information_best();
 	best_fit_dealloc(one_two_eight_1);
