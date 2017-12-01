@@ -180,10 +180,11 @@ void best_fit_dealloc(void *ptr)
 	next_block = current_block -> next;
 	current_block -> allocated = 0;
 	printf("old_block\n");
-		printf("%d\n", (long)current_block-(long)best_head);
-		printf("%d\n", current_block->allocated);
-		printf("%d\n", current_block->block_size);
+	printf("%d\n", (long)current_block-(long)best_head);
+	printf("%d\n", current_block->allocated);
+	printf("%d\n", current_block->block_size);
 
+	//merge current and next ->>> current
 	if(next_block != NULL && next_block -> allocated == 0){
 		current_block -> block_size += next_block -> block_size;
 		current_block -> next = next_block -> next;
@@ -191,6 +192,8 @@ void best_fit_dealloc(void *ptr)
 			next_block -> next -> prev = current_block;
 		}
 	}
+
+	//merge previous and current ->>> previous
 	if(prev_block != NULL && prev_block -> allocated == 0){
 		prev_block -> block_size += current_block -> block_size;
 		prev_block -> next = current_block -> next;
@@ -236,8 +239,7 @@ int worst_fit_count_extfrag(size_t size)
 	return 0;
 }
 
-void print_all_nodes_information_best(){
-	// sets the head_bf node
+void print_all_nodes(){
 	Node_block* current_block;
 	current_block = best_head;
 	
@@ -318,7 +320,7 @@ while (1) {
   	printf("The return value of two_five_six_1 is: %d\n", two_five_six_1);
 	if (two_five_six_1 == NULL) { break; }
 	print_all_nodes_information_best();
-	void* eight_1 = best_fit_alloc(9);
+	void* eight_1 = best_fit_alloc(300);
 	printf("The return value of eight_1 is: %d\n", eight_1);
 	if (eight_1 == NULL) { break; }
 	print_all_nodes_information_best();
@@ -326,11 +328,11 @@ while (1) {
 	printf("The return value of one_two_eight_1 is: %d\n", one_two_eight_1);
 	if (one_two_eight_1 == NULL) { break; }
 	
- 	void* sixteen_1 = best_fit_alloc(17);
+ 	void* sixteen_1 = best_fit_alloc(400);
  	printf("The return value of sixteen_1 is: %d\n", sixteen_1);
 	if (sixteen_1 == NULL) { break; }
 
-	void* sixty_four_1 = best_fit_alloc(65);
+	void* sixty_four_1 = best_fit_alloc(500);
  	printf("The return value of sixty_four_1 is: %d\n", sixty_four_1);
 	if (sixty_four_1 == NULL) { break; }
 	
