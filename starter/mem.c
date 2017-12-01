@@ -185,16 +185,16 @@ void best_fit_dealloc(void *ptr)
 
 	if(next_block != NULL && next_block -> allocated == 0){
 		current_block -> block_size += next_block -> block_size;
-		next_block -> prev -> next = current_block -> next;
+		current_block -> next = next_block -> next;
 		if(next_block -> next != NULL){
-			next_block -> next -> prev = next_block -> prev;
+			next_block -> next -> prev = current_block;
 		}
 	}
 	if(prev_block != NULL && prev_block -> allocated == 0){
 		prev_block -> block_size += current_block -> block_size;
-		current_block -> prev -> next = current_block -> next;
+		prev_block -> next = current_block -> next;
 		if(current_block -> next != NULL){
-			current_block -> next -> prev = current_block -> prev;
+			current_block -> next -> prev = prev_block;
 		}
 		current_block = prev_block;
 	}
