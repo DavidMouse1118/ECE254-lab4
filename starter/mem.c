@@ -320,7 +320,7 @@ while (1) {
 	void* eight_1 = best_fit_alloc(9);
 	printf("The return value of eight_1 is: %d\n", eight_1);
 	if (eight_1 == NULL) { break; }
-	
+	print_all_nodes_information_best();
 	void* one_two_eight_1 = best_fit_alloc(128);
 	printf("The return value of one_two_eight_1 is: %d\n", one_two_eight_1);
 	if (one_two_eight_1 == NULL) { break; }
