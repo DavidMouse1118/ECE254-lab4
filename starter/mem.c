@@ -301,32 +301,32 @@ while (1) {
 
 	void* four_1 =	best_fit_alloc(5);
 	printf("The return value of four_1 is: %d\n", four_1);
-	if (four_1 == 0) {  break; }
+	if (four_1 == NULL) {  break; }
 	
 	
 	void* two_five_six_1 = best_fit_alloc(256);
   	printf("The return value of two_five_six_1 is: %d\n", two_five_six_1);
-	if (two_five_six_1 == 0) { break; }
+	if (two_five_six_1 == NULL) { break; }
 	
 	void* eight_1 = best_fit_alloc(9);
 	printf("The return value of eight_1 is: %d\n", eight_1);
-	if (eight_1 == 0) { break; }
+	if (eight_1 == NULL) { break; }
 	
 	void* one_two_eight_1 = best_fit_alloc(128);
 	printf("The return value of one_two_eight_1 is: %d\n", one_two_eight_1);
-	if (one_two_eight_1 == 0) { break; }
+	if (one_two_eight_1 == NULL) { break; }
 	
  	void* sixteen_1 = best_fit_alloc(17);
  	printf("The return value of sixteen_1 is: %d\n", sixteen_1);
-	if (sixteen_1 == 0) { break; }
+	if (sixteen_1 == NULL) { break; }
 
 	void* sixty_four_1 = best_fit_alloc(65);
  	printf("The return value of sixty_four_1 is: %d\n", sixty_four_1);
-	if (sixty_four_1 == 0) { break; }
+	if (sixty_four_1 == NULL) { break; }
 	
  	void* thirty_two_1 = best_fit_alloc(33);
  	printf("The return value of thirty_two_1 is: %d\n", thirty_two_1);
-	if (thirty_two_1 == 0) { break; }
+	if (thirty_two_1 == NULL) { break; }
 
 
 	best_fit_dealloc(eight_1);
