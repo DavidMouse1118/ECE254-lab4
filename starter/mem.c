@@ -164,14 +164,19 @@ void best_fit_dealloc(void *ptr)
 		}
 		current_block = current_block->next;
 	}
-	//didnt find the block, return
+	//Didnt find the block, return
 	if(found == 0){
+		printf("blocks not found, failed to dealloc\n");
 		return;
 	}
 	//start dealloc
 	prev_block = current_block -> prev;
 	next_block = current_block -> next;
 	current_block -> allocated = 0;
+	printf("old_block\n");
+		printf("%d\n", current_block);
+		printf("%d\n", current_block->allocated);
+		printf("%d\n", current_block->block_size);
 
 	if(next_block != NULL && next_block -> allocated == 0){
 		current_block -> next = next_block -> next;
@@ -187,6 +192,10 @@ void best_fit_dealloc(void *ptr)
 			prev_block -> prev -> next = current_block;
 		}
 	}
+	printf("new_block\n");
+		printf("%d\n", current_block);
+		printf("%d\n", current_block->allocated);
+		printf("%d\n", current_block->block_size);
 	return;
 }
 
