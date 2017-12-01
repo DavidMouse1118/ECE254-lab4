@@ -248,7 +248,7 @@ void print_all_nodes_information_best(){
 	while(current_block != 0){
 		node_count++;
 		printf("========== Information about Node %d ========\n ", node_count);
-		printf("Current address: %d\n", current_block);
+		printf("Current address: %d\n", (long)current_block-(long)best_head);
 		printf("Previous node's' address: %d\n", current_block->prev);
 		printf("Next node's' address: %d\n", current_block->next);
 		printf("size_of_this_memory block: %d\n", current_block->block_size);
