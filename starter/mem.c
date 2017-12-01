@@ -74,13 +74,9 @@ void *best_fit_alloc(size_t size)
 	if(size % 4 != 0){
 		size = size + (4 - size % 4);
 	}
-
-	printf("%d\n", size);
-	printf("%d\n", sizeof(Node_block));
-
 	size = size + sizeof(Node_block);
-	printf("%d\n", size);
 
+	//Find best block
 	while(current_block){
 		if(current_block->allocated == 0){
 			if(current_block->block_size >= size){
