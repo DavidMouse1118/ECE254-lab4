@@ -35,7 +35,7 @@ int best_fit_memory_init(size_t size)
 	if(best_head == NULL){
 		return -1;
 	}
-	printf("allocated memory block start from%d\n", best_head);
+	printf("allocated memory block start from %d\n", best_head);
 	best_head->allocated = 0;
 	best_head->block_size = size;
 	best_head->next = NULL;
@@ -225,12 +225,14 @@ int main(int argc, char *argv[])
 	}
 	if ( algo == 0 ) {
 		best_fit_memory_init(1024);	// initizae 1KB, best fit
-
-		p = best_fit_alloc(8);		// allocate 8B
-		//printf("best fit: p=%p\n", p);
-		printf("best fit: p=%d\n", p);
-		if ( p != NULL ) {
-			best_fit_dealloc(p);	
+		int a;
+		for( a = 0; a < 20; a++ ){
+			p = best_fit_alloc(8);		// allocate 8B
+			//printf("best fit: p=%p\n", p);
+			printf("best fit: p=%d\n", p);
+			if ( p != NULL ) {
+				best_fit_dealloc(p);	
+			}
 		}
 		num = best_fit_count_extfrag(4);
 	} else if ( algo == 1 ) {
