@@ -196,7 +196,7 @@ void best_fit_dealloc(void *ptr)
 		if(current_block -> next != NULL){
 			current_block -> next -> prev = prev_block;
 		}
-		current_block = prev_block;
+		//current_block = prev_block;
 	}
 	printf("new_block\n");
 		printf("%d\n", (long)current_block-(long)best_head);
