@@ -99,10 +99,9 @@ void *best_fit_alloc(size_t size)
 	if(best_block->block_size == size){
 		best_block->allocated = 1;
 	}
-	//external fragementation
+	//internal fragementation
 	else if((best_block->block_size - size) <= sizeof(Node_block)){
 		printf("fragementation\n");
-		//run fragmentation count function
 		//updated old block
 		best_block->allocated = 1;
 	}
@@ -223,20 +222,16 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Invalid argument, please specify 0 or 1\n");
 		exit(1);
 	}
-	printf("nonon1\n");
 	if ( algo == 0 ) {
-		printf("nonon\n");
 		best_fit_memory_init(1024);	// initizae 1KB, best fit
-printf("cao\n");
+
 		p = best_fit_alloc(8);		// allocate 8B
-		printf("cao2\n");
 		printf("best fit: p=%p\n", p);
 		if ( p != NULL ) {
 			best_fit_dealloc(p);	
 		}
 		num = best_fit_count_extfrag(4);
 	} else if ( algo == 1 ) {
-		printf("nonon2\n");
 		worst_fit_memory_init(1024);	// initizae 1KB, worst fit
 
 		q = worst_fit_alloc(8);		// allocate 8B
