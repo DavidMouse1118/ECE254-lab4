@@ -30,9 +30,13 @@ Node_block* best_head;
 /* memory initializer */
 int best_fit_memory_init(size_t size)
 {
-
+	//size must be greater than sizeof(Node_block) + 4
+	if(size <= (sizeof(Node_block) + 4)){
+		printf("Size too small");
+		return -1;
+	}
 	best_head = (Node_block*)malloc(size);
-	if(best_head == NULL){
+	if(!best_head){
 		return -1;
 	}
 	printf("allocated memory block start from %d\n", best_head);
@@ -127,9 +131,11 @@ void *best_fit_alloc(size_t size)
 		//updated old block
 		best_block->allocated = 1;
 		best_block->block_size = size;
+		printf("best_block\n");
 		printf("%d\n", best_block);
 		printf("%d\n", best_block->allocated);
 		printf("%d\n", best_block->block_size);
+		printf("new_block\n");
 		printf("%d\n", new_block);
 		printf("%d\n", new_block->allocated);
 		printf("%d\n", new_block->block_size);
