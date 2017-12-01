@@ -171,7 +171,7 @@ void best_fit_dealloc(void *ptr)
 	next_block = current_block -> next;
 	current_block -> allocated = 0;
 	printf("old_block\n");
-		printf("%d\n", current_block);
+		printf("%d\n", (long)current_block-(long)best_head);
 		printf("%d\n", current_block->allocated);
 		printf("%d\n", current_block->block_size);
 
@@ -190,7 +190,7 @@ void best_fit_dealloc(void *ptr)
 		}
 	}
 	printf("new_block\n");
-		printf("%d\n", current_block);
+		printf("%d\n", (long)current_block-(long)best_head);
 		printf("%d\n", current_block->allocated);
 		printf("%d\n", current_block->block_size);
 	return;
