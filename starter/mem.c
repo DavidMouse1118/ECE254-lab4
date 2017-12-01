@@ -127,8 +127,10 @@ void *best_fit_alloc(size_t size)
 		//updated old block
 		best_block->allocated = 1;
 		best_block->block_size = size;
+		printf("%d\n", best_block);
 		printf("%d\n", best_block->allocated);
 		printf("%d\n", best_block->block_size);
+		printf("%d\n", new_block);
 		printf("%d\n", new_block->allocated);
 		printf("%d\n", new_block->block_size);
 	}
