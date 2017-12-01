@@ -59,6 +59,7 @@ void *best_fit_alloc(size_t size)
 	}
 	Node_block* current_block = best_head;
 	Node_block* best_block;
+	Node_block* new_block;
 	best_block->block_size = (size_t)-1;
 	//calculate size
 	if(size % 4 != 0){
@@ -96,20 +97,20 @@ void *best_fit_alloc(size_t size)
 	//split with new block
 	else {
 		//create new block
-		Node_block* new = (Node_block*)((size_t)best_block + size);
-		new->allocated = 0;
-		new->block_size = best_block->block_size - size;
+		new_block = (Node_block*)((size_t)best_block + size);
+		new_block->allocated = 0;
+		new_block->block_size = best_block->block_size - size;
 		//insert at the end of the linked list
 		if(best_block->next == NULL){
-			new -> next = NULL;
-			new -> prev = best_block;
-			best_block->next = new;
+			new_block -> next = NULL;
+			new_block -> prev = best_block;
+			best_block->next = new_block;
 		} 
 		//insert in the middle
 		else {
-			new -> next = best_block -> next;
-			new -> prev = best_block;
-			best_block -> next -> prev = new;
+			new_block -> next = best_block -> next;
+			new_block -> prev = best_block;
+			best_block -> next -> prev = new_block;
 		}
 		//updated old block
 		best_block->allocated = 1;
