@@ -183,11 +183,12 @@ void best_fit_dealloc(void *ptr)
 		}
 	}
 	if(prev_block != NULL && prev_block -> allocated == 0){
-		current_block -> prev  = prev_block -> prev;
-		current_block -> block_size += prev_block -> block_size;
-		if(prev_block -> prev != NULL){
-			prev_block -> prev -> next = current_block;
+		prev_block -> next = current_block -> next;
+		prev_block -> block_size += current_block -> block_size;
+		if(current_block -> next != NULL){
+			current_block -> next -> prev = prev_block;
 		}
+		current_block = prev_block;
 	}
 	printf("new_block\n");
 		printf("%d\n", (long)current_block-(long)best_head);
