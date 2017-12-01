@@ -19,9 +19,9 @@ struct Node_block {
 	size_t block_size;
 	struct Node_block* next;
 	struct Node_block* prev;
-}
+};
 
-struct Node_block* best_head;
+Node_block* best_head;
 
 
 /* Functions */
@@ -155,11 +155,11 @@ void best_fit_dealloc(void *ptr)
 			next_block -> next -> prev = current_block;
 		}
 	}
-	if(pre_block != NULL && pre_block -> allocated == 0){
-		current_block -> prev  = pre_block -> prev;
-		current_block -> block_size += pre_block -> block_size;
-		if(pre_block -> prev != NULL){
-			pre_block -> prev -> next = current_block;
+	if(prev_block != NULL && prev_block -> allocated == 0){
+		current_block -> prev  = prev_block -> prev;
+		current_block -> block_size += prev_block -> block_size;
+		if(prev_block -> prev != NULL){
+			prev_block -> prev -> next = current_block;
 		}
 	}
 	return;
@@ -194,3 +194,49 @@ int worst_fit_count_extfrag(size_t size)
 	// To be completed by students
 	return 0;
 }
+
+int main(int argc, char *argv[])
+{
+	int num = 0;
+	int algo = 0; // default algorithm to test is best fit  
+	void *p, *q;
+
+	if (argc != 2) {
+		fprintf(stderr, "Usage: %s <0/1>. 0 for best fit and 1 for worst fit \n", argv[0]);
+		exit (1);
+	} else if (!strcmp(argv[1], "1") || !strcmp(argv[1], "0")) {
+		algo = atoi(argv[1]);
+	} else {
+		fprintf(stderr, "Invalid argument, please specify 0 or 1\n");
+		exit(1);
+	}
+	
+	if ( algo == 0 ) {
+		best_fit_memory_init(1024);	// initizae 1KB, best fit
+
+		p = best_fit_alloc(8);		// allocate 8B
+		printf("best fit: p=%p\n", p);
+		if ( p != NULL ) {
+			best_fit_dealloc(p);	
+		}
+		num = best_fit_count_extfrag(4);
+	} else if ( algo == 1 ) {
+
+		worst_fit_memory_init(1024);	// initizae 1KB, worst fit
+
+		q = worst_fit_alloc(8);		// allocate 8B
+		printf("worst fit: q=%p\n", q);
+		if ( q != NULL ) {
+			worst_fit_dealloc(q);	
+		}
+		num = worst_fit_count_extfrag(4);
+	} else {
+		fprintf(stderr, "Should not reach here!\n");
+		exit(1);
+	}
+
+	printf("num = %d\n", num);
+
+	return 0;
+}
+
