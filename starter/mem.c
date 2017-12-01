@@ -62,7 +62,7 @@ void *best_fit_alloc(size_t size)
 	Node_block* current_block;
 	current_block = best_head;
 
-	Node_block* best_block;
+	Node_block* best_block = NULL;
 	Node_block* new_block;
 
 	//calculate size
