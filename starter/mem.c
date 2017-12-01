@@ -59,7 +59,7 @@ void *best_fit_alloc(size_t size)
 	if(size == 0){
 		return NULL;
 	}
-	size_t max_size = (size_t)-1
+	size_t max_size = (size_t)-1;
 	Node_block* current_block;
 	Node_block* best_block;
 	Node_block* new_block;
