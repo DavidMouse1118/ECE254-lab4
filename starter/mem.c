@@ -97,7 +97,7 @@ void *best_fit_alloc(size_t size)
 	}
 	//if best node doesnt exit, return
 	if(!best_block){
-		printf("No space\n");
+		printf("No space for the size\n");
 		return NULL;
 	}
 
@@ -188,6 +188,7 @@ void *worst_fit_alloc(size_t size)
 
 	//if worst node doesnt exit, return
 	if(!worst_block){
+		printf("No space for the size\n");
 		return NULL;
 	}
 
@@ -380,8 +381,8 @@ int worst_fit_count_extfrag(size_t size)
 	}
 	return count;
 }
-print_all_nodes
-void (int type){
+
+void print_all_nodes(int type){
 	Node_block* head;
 	if(type == 0){
 		head = best_head;
