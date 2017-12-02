@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	if ( algo == 0 ) {
-		best_fit_memory_init(4096);
+		best_fit_memory_init(1028);
 	
 while (1) {
 	//print_all_nodes_information_best();
