@@ -38,6 +38,7 @@ int best_fit_count_extfrag(size_t size);
 int worst_fit_count_extfrag(size_t size);
 
 
-void print_all_nodes(char* type);
+void print_all_nodes(int type);
+void* get_head(int type);
 
 #endif // !MEM_H_

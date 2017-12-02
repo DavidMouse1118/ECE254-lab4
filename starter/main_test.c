@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
 		}
 
 		printf("\n========================= Best fit test 2: Input too big, fail to allocate block ===========================\n\n");
-		head = best_fit_memory_init(1024);
+		best_fit_memory_init(1024);
+		head = get_head(algo);
 		if(best_fit_alloc(2048) == NULL){
 			printf("Best fit test 2 Passed\n");
 		}
@@ -62,7 +63,7 @@ int main(int argc, char *argv[])
 		if(p == head + 32){
 			printf("Best fit test 4 Passed\n");
 		}
-		print_all_nodes('best');
+		print_all_nodes(algo);
 
 		printf("\n========================= Best fit test 5: Block not found, failed to deallocate ===========================\n\n");
 		best_fit_memory_init(1024);
