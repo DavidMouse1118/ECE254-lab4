@@ -48,8 +48,8 @@ int main(int argc, char *argv[])
 
 		printf("\n========================= Best fit test 3: Allocate succeed, deallocate succeed ===========================\n\n");
 		void* p = best_fit_alloc(5);
-		printf("aaaaa%d\n", new1);
-		if(p == head + 32){
+		printf("aaaaa%d\n", p);
+		if((size_t)p == (size_t)head + 32){
 			printf("Best fit test 3 Passed\n");
 		}
 		best_fit_dealloc(p);
@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 		q = best_fit_alloc(5);
 		best_fit_dealloc(p);
 		p = best_fit_alloc(5);
-		if(p == head + 32){
+		if((size_t)p == (size_t)head + 32){
 			printf("Best fit test 4 Passed\n");
 		}
 		print_all_nodes(algo);
@@ -70,10 +70,10 @@ int main(int argc, char *argv[])
 		p = best_fit_alloc(5);
 		//wrong block
 		q = (void*)((size_t)p +1);
-		best_fit_dealloc(wrongBlock);
+		best_fit_dealloc(q);
 		//block that has is not allocated, so dealloc will fail
 		q = (void*)((size_t)p + sizeof(Node_block) + 5);
-		best_fit_dealloc(wrongBlock);
+		best_fit_dealloc(q);
 		printf("Best fit test 5 Passed\n");
 	
 // while (1) {
@@ -186,7 +186,7 @@ while (1) {
 	//print_all_nodes_information_best();
 }
 
-print_all_nodes_worst();
+print_all_nodes(algo);
 
 int four_bf, eight_bf, sixteen_bf, thirtytwo_bf, sixtyfour_bf, onetwentyeight_bf, twofiftysix_bf;
 
