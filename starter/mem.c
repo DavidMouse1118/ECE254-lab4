@@ -492,11 +492,11 @@ while (1) {
 	if (thirty_two_1 == NULL) { break; }
 
 
-	//best_fit_dealloc(eight_1);
+	best_fit_dealloc(eight_1);
 	//print_all_nodes_information_best();
-	//best_fit_dealloc(thirty_two_1);
+	best_fit_dealloc(thirty_two_1);
 	//print_all_nodes_information_best();
-	//best_fit_dealloc(one_two_eight_1);
+	best_fit_dealloc(one_two_eight_1);
 	//print_all_nodes_information_best();
 }
 
