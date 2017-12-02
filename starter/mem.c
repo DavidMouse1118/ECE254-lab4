@@ -380,51 +380,20 @@ int worst_fit_count_extfrag(size_t size)
 	return count;
 }
 
-void print_all_nodes_best(){
-	Node_block* current_block;
-	current_block = best_head;
-	
+void print_all_nodes(char type){
+	Node_block* current_block
+	if(type == 'best'){
+		current_block = best_head;
+	} else {
+		current_block = worst_head;
+	}
+
 	printf("\n************ PRINTING ALL NODES INFO ************\n\n");
 	
 	int count = 0;
-	
-	// traverse the list
 	while(current_block){
-		printf("****** Information about Node %d ******\n ", count);
-		printf("Current address: %d\n", (long)current_block-(long)best_head);
-		printf("Previous node's' address: %d\n", (long)current_block->prev -(long)best_head);
-		printf("Next node's' address: %d\n", current_block->next);
-		printf("size_of_this_memory block: %d\n", current_block->block_size);
-		printf("is_allocated: %d\n", current_block->allocated);
+		printf("Node %d : %d - %d , size %d, is_allocated %d\n", count, (size_t)current_block - (size_t)best_head, (size_t)current_block + current_block->block_size - 1, current_block->block_size, current_block->allocated);
 		current_block = current_block->next;
 		count++;
 	}
-	printf("****** General Stuff ******\n ");
-	printf("Total number of nodes: %d\n", count);
-	printf("Size of a struct node: %d\n\n", sizeof(Node_block));
 }
-
-void print_all_nodes_worst(){
-	Node_block* current_block;
-	current_block = worst_head;
-	
-	printf("\n************ PRINTING ALL NODES INFO ************\n\n");
-	
-	int count = 0;
-	
-	// traverse the list
-	while(current_block){
-		printf("****** Information about Node %d ******\n ", count);
-		printf("Current address: %d\n", (long)current_block-(long)worst_head);
-		printf("Previous node's' address: %d\n", (long)current_block->prev -(long)worst_head);
-		printf("Next node's' address: %d\n", current_block->next);
-		printf("size_of_this_memory block: %d\n", current_block->block_size);
-		printf("is_allocated: %d\n", current_block->allocated);
-		current_block = current_block->next;
-		count++;
-	}
-	printf("****** General Stuff ******\n ");
-	printf("Total number of nodes: %d\n", count);
-	printf("Size of a struct node: %d\n\n", sizeof(Node_block));
-}
-
