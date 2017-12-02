@@ -77,8 +77,8 @@ int main(int argc, char *argv[])
 		
 		printf("\n========================= Best fit test 5: External fragmentation test ===========================\n\n");
 		best_fit_memory_init(16384);
-
-		while(1){
+		int i;
+		for(i = 0; i < 500; i++){
 			//Alloc
 			void* best_block[8];
 			printf("wtf %d\n", rand() % 256 + 1);
