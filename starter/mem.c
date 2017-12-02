@@ -71,8 +71,7 @@ void *best_fit_alloc(size_t size)
 		printf("size is too small, cannot be zero\n");
 		return NULL;
 	}
-	Node_block* current_block;
-	current_block = best_head;
+	Node_block* current_block = best_head;
 
 	Node_block* best_block = NULL;
 	Node_block* new_block;
@@ -105,20 +104,12 @@ void *best_fit_alloc(size_t size)
 	//exact allocatikon
 	if(best_block->block_size == size){
 		best_block->allocated = 1;
-		printf("best_block\n");
-		printf("%d\n", (long)best_block-(long)best_head);
-		printf("%d\n", best_block->allocated);
-		printf("%d\n", best_block->block_size);
 	}
 	//internal fragementation
 	else if((best_block->block_size - size) <= sizeof(Node_block)){
 		printf("fragementation\n");
 		//updated old block
 		best_block->allocated = 1;
-		printf("best_block\n");
-		printf("%d\n", (long)best_block-(long)best_head);
-		printf("%d\n", best_block->allocated);
-		printf("%d\n", best_block->block_size);
 	}
 	//split with new block
 	else {
@@ -142,14 +133,6 @@ void *best_fit_alloc(size_t size)
 		//updated old block
 		best_block->allocated = 1;
 		best_block->block_size = size;
-		printf("best_block\n");
-		printf("%d\n", (long)best_block-(long)best_head);
-		printf("%d\n", best_block->allocated);
-		printf("%d\n", best_block->block_size);
-		printf("new_block\n");
-		printf("%d\n", (long)new_block-(long)best_head);
-		printf("%d\n", new_block->allocated);
-		printf("%d\n", new_block->block_size);
 	}
 	return (Node_block*)((size_t)best_block + sizeof(Node_block)) ;
 }
@@ -161,8 +144,7 @@ void *worst_fit_alloc(size_t size)
 		printf("size is too small, cannot be zero\n");
 		return NULL;
 	}
-	Node_block* current_block;
-	current_block = worst_head;
+	Node_block* current_block = worst_head;
 
 	Node_block* worst_block = NULL;
 	Node_block* new_block;
@@ -196,20 +178,12 @@ void *worst_fit_alloc(size_t size)
 	//exact allocatikon
 	if(worst_block->block_size == size){
 		worst_block->allocated = 1;
-		printf("worst_block\n");
-		printf("%d\n", (long)worst_block-(long)worst_head);
-		printf("%d\n", worst_block->allocated);
-		printf("%d\n", worst_block->block_size);
 	}
 	//internal fragementation
 	else if((worst_block->block_size - size) <= sizeof(Node_block)){
 		printf("fragementation\n");
 		//updated old block
 		worst_block->allocated = 1;
-		printf("worst_block\n");
-		printf("%d\n", (long)worst_block-(long)worst_head);
-		printf("%d\n", worst_block->allocated);
-		printf("%d\n", worst_block->block_size);
 	}
 	//split with new block
 	else {
@@ -233,14 +207,6 @@ void *worst_fit_alloc(size_t size)
 		//updated old block
 		worst_block->allocated = 1;
 		worst_block->block_size = size;
-		printf("worst_block\n");
-		printf("%d\n", (long)worst_block-(long)worst_head);
-		printf("%d\n", worst_block->allocated);
-		printf("%d\n", worst_block->block_size);
-		printf("new_block\n");
-		printf("%d\n", (long)new_block-(long)worst_head);
-		printf("%d\n", new_block->allocated);
-		printf("%d\n", new_block->block_size);
 	}
 	return (Node_block*)((size_t)worst_block + sizeof(Node_block)) ;
 }
@@ -268,10 +234,6 @@ void best_fit_dealloc(void *ptr)
 	prev_block = current_block -> prev;
 	next_block = current_block -> next;
 	current_block -> allocated = 0;
-	printf("old_block\n");
-	printf("%d\n", (long)current_block-(long)best_head);
-	printf("%d\n", current_block->allocated);
-	printf("%d\n", current_block->block_size);
 
 	//merge current and next ->>> current
 	if(next_block != NULL && next_block -> allocated == 0){
@@ -291,10 +253,6 @@ void best_fit_dealloc(void *ptr)
 		}
 		current_block = prev_block;
 	}
-	printf("new_block\n");
-	printf("%d\n", (long)current_block-(long)best_head);
-	printf("%d\n", current_block->allocated);
-	printf("%d\n", current_block->block_size);
 	return;
 }
 
@@ -320,10 +278,6 @@ void worst_fit_dealloc(void *ptr)
 	prev_block = current_block -> prev;
 	next_block = current_block -> next;
 	current_block -> allocated = 0;
-	printf("old_block\n");
-	printf("%d\n", (long)current_block-(long)worst_head);
-	printf("%d\n", current_block->allocated);
-	printf("%d\n", current_block->block_size);
 
 	//merge current and next ->>> current
 	if(next_block != NULL && next_block -> allocated == 0){
@@ -343,10 +297,6 @@ void worst_fit_dealloc(void *ptr)
 		}
 		current_block = prev_block;
 	}
-	printf("new_block\n");
-	printf("%d\n", (long)current_block-(long)worst_head);
-	printf("%d\n", current_block->allocated);
-	printf("%d\n", current_block->block_size);
 	return;
 
 }
@@ -391,7 +341,7 @@ void print_all_nodes(int type){
 	}
 	Node_block* current_block = head;
 
-	printf("\n************ PRINTING ALL NODES INFO ************\n\n");
+	printf("\n************ ALL NODES BLOCKS ************\n\n");
 	
 	int count = 0;
 	while(current_block){
