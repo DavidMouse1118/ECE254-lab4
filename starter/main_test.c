@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 		}
 		printf("\n========================= Best fit test 3: Allocate succeed, deallocate succeed ===========================\n\n");
 		Node_block* new_block = (Node_block*)best_fit_alloc(5);
-		if(new_block->allocated == 1 && new_block -> block_size == (sizeof(Node_block) + 5)){
+		if(new_block->allocated == 1 && new_block -> block_size == 40){
 			printf("Passed, one more\n");
 		}
 		best_fit_dealloc(new_block);
