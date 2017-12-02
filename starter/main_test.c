@@ -73,7 +73,53 @@ int main(int argc, char *argv[])
 		q = (void*)((size_t)p + sizeof(Node_block) + 5);
 		best_fit_dealloc(q);
 		printf("Best fit test 5 Passed\n");
-	
+		
+		printf("\n========================= Best fit test 5: External fragmentation test ===========================\n\n");
+		best_fit_memory_init(16384);
+
+		while(1){
+			//Alloc
+			void* best_block[8];
+			best_block[0] =	best_fit_alloc((size_t)(rand() % 256));
+			if (best_block[0] == NULL) {  break; }
+			best_block[1] =	best_fit_alloc((size_t)(rand() % 256));
+			if (best_block[1] == NULL) {  break; }
+			best_block[2] =	best_fit_alloc((size_t)(rand() % 256));
+			if (best_block[2] == NULL) {  break; }
+			best_block[3] =	best_fit_alloc((size_t)(rand() % 256));
+			if (best_block[3] == NULL) {  break; }
+			best_block[4] =	best_fit_alloc((size_t)(rand() % 256));
+			if (best_block[4] == NULL) {  break; }
+			best_block[5] =	best_fit_alloc((size_t)(rand() % 256));
+			if (best_block[5] == NULL) {  break; }
+			best_block[6] =	best_fit_alloc((size_t)(rand() % 256));
+			if (best_block[6] == NULL) {  break; }
+			best_block[7] =	best_fit_alloc((size_t)(rand() % 256));
+			if (best_block[7] == NULL) {  break; }
+
+			//Dealloc
+			best_fit_dealloc(best_block[0]);
+			best_fit_dealloc(best_block[2]);
+			best_fit_dealloc(best_block[4]);
+			best_fit_dealloc(best_block[6]);
+		}
+		int four_bf, eight_bf, sixteen_bf, thirtytwo_bf, sixtyfour_bf, onetwentyeight_bf, twofiftysix_bf;
+
+four_bf = best_fit_count_extfrag(4);
+eight_bf = best_fit_count_extfrag(8);
+sixteen_bf = best_fit_count_extfrag(16);
+thirtytwo_bf = best_fit_count_extfrag(32);
+sixtyfour_bf = best_fit_count_extfrag(64);
+onetwentyeight_bf = best_fit_count_extfrag(128);
+twofiftysix_bf = best_fit_count_extfrag(256);
+
+printf("the extern frag for best fit for four bytes is %d\n", four_bf);
+printf("the extern frag for best fit for eight bytes is %d\n", eight_bf);
+printf("the extern frag for best fit for 16 bytes is %d\n", sixteen_bf);
+printf("the extern frag for best fit for 32 bytes is %d\n", thirtytwo_bf);
+printf("the extern frag for best fit for 64 bytes is %d\n", sixtyfour_bf);
+printf("the extern frag for best fit for 128 bytes is %d\n", onetwentyeight_bf);
+printf("the extern frag for best fit for 256 bytes is %d\n", twofiftysix_bf);
 // while (1) {
 // 	//print_all_nodes_information_best();
 // 	void* four_1 =	best_fit_alloc(5);
