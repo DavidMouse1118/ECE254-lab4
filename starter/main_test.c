@@ -75,7 +75,7 @@ while (1) {
 	//print_all_nodes_information_best();
 }
 
-print_all_nodes();
+print_all_nodes_best();
 
 int four_bf, eight_bf, sixteen_bf, thirtytwo_bf, sixtyfour_bf, onetwentyeight_bf, twofiftysix_bf;
 
