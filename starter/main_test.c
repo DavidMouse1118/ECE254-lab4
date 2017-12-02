@@ -58,6 +58,7 @@ int main(int argc, char *argv[])
 		Node_block* new_block1 = (Node_block*)best_fit_alloc(5);
 		Node_block* new_block2 = (Node_block*)best_fit_alloc(5);
 		best_fit_dealloc(new_block1);
+		printf("cccc%d\n", new_block1->block_size);
 		Node_block* new_block3 = (Node_block*)best_fit_alloc(5);
 		if(new_block3 == new_block1){
 			printf("Passed\n");
