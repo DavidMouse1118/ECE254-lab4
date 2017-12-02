@@ -471,7 +471,7 @@ while (1) {
   	printf("The return value of two_five_six_1 is: %d\n", two_five_six_1);
 	if (two_five_six_1 == NULL) { break; }
 	//print_all_nodes_information_best();
-	void* eight_1 = best_fit_alloc(300);
+	void* eight_1 = best_fit_alloc(9);
 	printf("The return value of eight_1 is: %d\n", eight_1);
 	if (eight_1 == NULL) { break; }
 	//print_all_nodes_information_best();
@@ -479,11 +479,11 @@ while (1) {
 	printf("The return value of one_two_eight_1 is: %d\n", one_two_eight_1);
 	if (one_two_eight_1 == NULL) { break; }
 	
- 	void* sixteen_1 = best_fit_alloc(400);
+ 	void* sixteen_1 = best_fit_alloc(17);
  	printf("The return value of sixteen_1 is: %d\n", sixteen_1);
 	if (sixteen_1 == NULL) { break; }
 
-	void* sixty_four_1 = best_fit_alloc(500);
+	void* sixty_four_1 = best_fit_alloc(65);
  	printf("The return value of sixty_four_1 is: %d\n", sixty_four_1);
 	if (sixty_four_1 == NULL) { break; }
 	
