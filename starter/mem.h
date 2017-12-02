@@ -10,6 +10,15 @@
 
 #include <stddef.h>
 
+struct Node_block {
+	//1 is allocated, 0 is not allocated
+	int allocated;
+	size_t block_size;
+	struct Node_block* next;
+	struct Node_block* prev;
+};
+
+
 /* memory initializers */
 int best_fit_memory_init(size_t size);
 int worst_fit_memory_init(size_t size);

@@ -14,14 +14,6 @@
 /* defines */
 
 /* global varaiables */
-struct Node_block {
-	//1 is allocated, 0 is not allocated
-	int allocated;
-	size_t block_size;
-	struct Node_block* next;
-	struct Node_block* prev;
-};
-
 //The node head of the block linked list (best fit)
 Node_block* best_head;
 //The node head of the block linked list (worest fit)
@@ -392,13 +384,13 @@ void print_all_nodes_best(){
 	Node_block* current_block;
 	current_block = best_head;
 	
-	printf("\n========================= PRINTING ALL NODES INFO ===========================\n\n");
+	printf("\n****** PRINTING ALL NODES INFO ******\n\n");
 	
 	int count = 0;
 	
 	// traverse the list
 	while(current_block){
-		printf("========== Information about Node %d ========\n ", count);
+		printf("*** Information about Node %d ***\n ", count);
 		printf("Current address: %d\n", (long)current_block-(long)best_head);
 		printf("Previous node's' address: %d\n", (long)current_block->prev -(long)best_head);
 		printf("Next node's' address: %d\n", current_block->next);
@@ -407,7 +399,7 @@ void print_all_nodes_best(){
 		current_block = current_block->next;
 		count++;
 	}
-	printf("========== General Stuff ========\n ");
+	printf("*** General Stuff ***\n ");
 	printf("Total number of nodes: %d\n", count);
 	printf("Size of a struct node: %d\n\n", sizeof(Node_block));
 }
@@ -416,13 +408,13 @@ void print_all_nodes_worst(){
 	Node_block* current_block;
 	current_block = worst_head;
 	
-	printf("\n========================= PRINTING ALL NODES INFO ===========================\n\n");
+	printf("\n****** PRINTING ALL NODES INFO ******\n\n");
 	
 	int count = 0;
 	
 	// traverse the list
 	while(current_block){
-		printf("========== Information about Node %d ========\n ", count);
+		printf("*** Information about Node %d ***\n ", count);
 		printf("Current address: %d\n", (long)current_block-(long)worst_head);
 		printf("Previous node's' address: %d\n", (long)current_block->prev -(long)worst_head);
 		printf("Next node's' address: %d\n", current_block->next);
@@ -431,7 +423,7 @@ void print_all_nodes_worst(){
 		current_block = current_block->next;
 		count++;
 	}
-	printf("========== General Stuff ========\n ");
+	printf("*** General Stuff ***\n ");
 	printf("Total number of nodes: %d\n", count);
 	printf("Size of a struct node: %d\n\n", sizeof(Node_block));
 }
