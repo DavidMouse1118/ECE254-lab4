@@ -214,7 +214,7 @@ int main(int argc, char *argv[])
 		printf("Worst fit test 5 Passed\n");
 
 		printf("\n========================= Worst fit test 6: External fragmentation test ===========================\n\n");
-		worst_fit_memory_init(1638400000);
+		worst_fit_memory_init(1638400);
 		int i;
 		while(1){
 			//Alloc
