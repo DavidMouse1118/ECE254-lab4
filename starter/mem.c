@@ -174,7 +174,7 @@ void *worst_fit_alloc(size_t size)
 	Node_block* worst_block = NULL;
 	Node_block* new_block;
 
-	calculate size
+	//calculate size
 	if(size % 4 != 0){
 		size = size + (4 - size % 4);
 	}
@@ -401,17 +401,17 @@ void print_all_nodes(){
 	
 	// traverse the list
 	while(current_block){
-		printf("========== Information about Node %d ========\n ", node_count);
+		printf("========== Information about Node %d ========\n ", count);
 		printf("Current address: %d\n", (long)current_block-(long)best_head);
 		printf("Previous node's' address: %d\n", (long)current_block->prev -(long)best_head);
 		printf("Next node's' address: %d\n", current_block->next);
 		printf("size_of_this_memory block: %d\n", current_block->block_size);
 		printf("is_allocated: %d\n", current_block->allocated);
 		current_block = current_block->next;
-		node_count++;
+		count++;
 	}
 	printf("========== General Stuff ========\n ");
-	printf("Total number of nodes: %d\n", node_count);
+	printf("Total number of nodes: %d\n", count);
 	printf("Size of a struct node: %d\n\n", sizeof(Node_block));
 }
 
