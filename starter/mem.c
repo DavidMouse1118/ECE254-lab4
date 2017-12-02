@@ -22,7 +22,10 @@ struct Node_block {
 	struct Node_block* prev;
 };
 
+//The node head of the block linked list (best fit)
 Node_block* best_head;
+//The node head of the block linked list (worest fit)
+Node_block* worst_head;
 
 
 /* Functions */
@@ -32,9 +35,10 @@ int best_fit_memory_init(size_t size)
 {
 	//size must be greater than sizeof(Node_block) + 4
 	if(size <= (sizeof(Node_block) + 4)){
-		printf("Size too small");
+		printf("size too small, can not allocated\n");
 		return -1;
 	}
+
 	best_head = (Node_block*)malloc(size);
 	if(!best_head){
 		return -1;
@@ -51,8 +55,19 @@ int best_fit_memory_init(size_t size)
 int worst_fit_memory_init(size_t size)
 {
 
-	// To be completed by students
-	// You call malloc once here to obtain the memory to be managed.
+	if(size <= (sizeof(Node_block)+4)){
+		printf("Size too small\n");
+		return -1;
+	}
+	worst_head = (Node_block*)malloc(size);
+	if(!worst_head){
+		return -1;
+	}
+	printf("allcated memory block start from %d\n", worst_head);
+	worst_head -> allocated = 0;
+	worst_head -> block_size = size;
+	worst_head -> next = NULL;
+	worst_head -> prev =NULL;
 	return 0;
 
 }
@@ -78,17 +93,14 @@ void *best_fit_alloc(size_t size)
 
 	//Find best block
 	while(current_block){
-		if(current_block->allocated == 0){
-			if(current_block->block_size >= size){
-				if(!best_block){
-					best_block = current_block;
-				}
-				if (current_block->block_size < best_block->block_size){
-					best_block = current_block;
-				}
+		if(current_block->allocated == 0 && current_block->block_size >= size){
+			if(!best_block){
+				best_block = current_block;
+			}
+			if (current_block->block_size < best_block->block_size){
+				best_block = current_block;
 			}
 		}
-
 		current_block = current_block->next;
 	}
 	//if best node doesnt exit, return
@@ -152,8 +164,93 @@ void *best_fit_alloc(size_t size)
 
 void *worst_fit_alloc(size_t size)
 {
-	// To be completed by students
-	return NULL;
+	if(size == 0){
+		printf("size is too small, cannot be zero\n");
+		return NULL;
+	}
+	Node_block* current_block;
+	current_block = worst_head;
+
+	Node_block* worst_block = NULL;
+	Node_block* new_block;
+
+	calculate size
+	if(size % 4 != 0){
+		size = size + (4 - size % 4);
+	}
+	size = size + sizeof(Node_block);
+
+	//Find worst block
+	while(current_block){
+		if(current_block->allocated == 0){
+			if(current_block->block_size <= size){
+				if(!worst_block){
+					worst_block = current_block;
+				}
+				if (current_block->block_size > worst_block->block_size){
+					worst_block = current_block;
+				}
+			}
+		}
+
+		current_block = current_block->next;
+	}
+	//if worst node doesnt exit, return
+	if(!worst_block){
+		return NULL;
+	}
+
+	printf("allocted size %d in block %d\n", size, worst_block);
+	//exact allocatikon
+	if(worst_block->block_size == size){
+		worst_block->allocated = 1;
+		printf("worst_block\n");
+		printf("%d\n", (long)worst_block-(long)worst_head);
+		printf("%d\n", worst_block->allocated);
+		printf("%d\n", worst_block->block_size);
+	}
+	//internal fragementation
+	else if((worst_block->block_size - size) <= sizeof(Node_block)){
+		printf("fragementation\n");
+		//updated old block
+		worst_block->allocated = 1;
+		printf("worst_block\n");
+		printf("%d\n", (long)worst_block-(long)worst_head);
+		printf("%d\n", worst_block->allocated);
+		printf("%d\n", worst_block->block_size);
+	}
+	//split with new block
+	else {
+		//create new block
+		new_block = (Node_block*)((size_t)worst_block + size);
+		new_block->allocated = 0;
+		new_block->block_size = worst_block->block_size - size;
+		//insert at the end of the linked list
+		if(worst_block->next == NULL){
+			new_block -> next = NULL;
+			worst_block -> next = new_block;
+			new_block -> prev = worst_block;
+		} 
+		//insert in the middle
+		else {
+			new_block -> next = worst_block -> next;
+			worst_block -> next = new_block;
+			new_block -> prev = worst_block;
+			new_block -> next -> prev = new_block;
+		}
+		//updated old block
+		worst_block->allocated = 1;
+		worst_block->block_size = size;
+		printf("worst_block\n");
+		printf("%d\n", (long)worst_block-(long)worst_head);
+		printf("%d\n", worst_block->allocated);
+		printf("%d\n", worst_block->block_size);
+		printf("new_block\n");
+		printf("%d\n", (long)new_block-(long)worst_head);
+		printf("%d\n", new_block->allocated);
+		printf("%d\n", new_block->block_size);
+	}
+	return worst_block;
 }
 
 /* memory de-allocator */
@@ -211,9 +308,55 @@ void best_fit_dealloc(void *ptr)
 
 void worst_fit_dealloc(void *ptr) 
 {
+	Node_block* current_block = worst_head;
+	Node_block* prev_block;
+	Node_block* next_block;
+	int found = 0;
+	while(current_block) {
+		if(current_block->allocated == 1 && (size_t)current_block == (size_t)ptr){
+			found = 1;
+			break;
+		}
+		current_block = current_block->next;
+	}
+	//Didnt find the block, return
+	if(found == 0){
+		printf("blocks not found, failed to dealloc\n");
+		return;
+	}
+	//start dealloc
+	prev_block = current_block -> prev;
+	next_block = current_block -> next;
+	current_block -> allocated = 0;
+	printf("old_block\n");
+	printf("%d\n", (long)current_block-(long)worst_head);
+	printf("%d\n", current_block->allocated);
+	printf("%d\n", current_block->block_size);
 
-	// To be completed by students
+	//merge current and next ->>> current
+	if(next_block != NULL && next_block -> allocated == 0){
+		current_block -> block_size += next_block -> block_size;
+		current_block -> next = next_block -> next;
+		if(next_block -> next != NULL){
+			next_block -> next -> prev = current_block;
+		}
+	}
+
+	//merge previous and current ->>> previous
+	if(prev_block != NULL && prev_block -> allocated == 0){
+		prev_block -> block_size += current_block -> block_size;
+		prev_block -> next = current_block -> next;
+		if(current_block -> next != NULL){
+			current_block -> next -> prev = prev_block;
+		}
+		current_block = prev_block;
+	}
+	printf("new_block\n");
+	printf("%d\n", (long)current_block-(long)worst_head);
+	printf("%d\n", current_block->allocated);
+	printf("%d\n", current_block->block_size);
 	return;
+
 }
 
 /* memory algorithm metric utility function(s) */
@@ -235,29 +378,37 @@ int best_fit_count_extfrag(size_t size)
 
 int worst_fit_count_extfrag(size_t size)
 {
-	// To be completed by students
-	return 0;
+	size = size + sizeof(Node_block);
+	int count = 0;
+	Node_block* current_block = worst_head;
+	while(current_block){
+		if(current_block -> allocated == 0 && current_block -> block_size < size){
+			count++;
+		}
+		current_block = current_block->next;
+	}
+	return count;
+
 }
 
 void print_all_nodes(){
 	Node_block* current_block;
 	current_block = best_head;
 	
-	printf("\n========================= PRINTING ALL NODES AND INFO ===========================\n\n");
+	printf("\n========================= PRINTING ALL NODES INFO ===========================\n\n");
 	
-	int node_count = 0;
+	int count = 0;
 	
 	// traverse the list
-	while(current_block != 0){
-		node_count++;
+	while(current_block){
 		printf("========== Information about Node %d ========\n ", node_count);
 		printf("Current address: %d\n", (long)current_block-(long)best_head);
 		printf("Previous node's' address: %d\n", (long)current_block->prev -(long)best_head);
 		printf("Next node's' address: %d\n", current_block->next);
 		printf("size_of_this_memory block: %d\n", current_block->block_size);
 		printf("is_allocated: %d\n", current_block->allocated);
-
 		current_block = current_block->next;
+		node_count++;
 	}
 	printf("========== General Stuff ========\n ");
 	printf("Total number of nodes: %d\n", node_count);
