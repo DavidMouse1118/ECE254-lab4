@@ -158,7 +158,7 @@ void *best_fit_alloc(size_t size)
 		printf("%d\n", new_block->allocated);
 		printf("%d\n", new_block->block_size);
 	}
-	return best_block;
+	return (Node_block*)((size_t)best_block + sizeof(Node_block)) ;
 }
 
 
@@ -250,7 +250,7 @@ void *worst_fit_alloc(size_t size)
 		printf("%d\n", new_block->allocated);
 		printf("%d\n", new_block->block_size);
 	}
-	return worst_block;
+	return (Node_block*)((size_t)worst_block + sizeof(Node_block)) ;
 }
 
 /* memory de-allocator */
@@ -261,7 +261,7 @@ void best_fit_dealloc(void *ptr)
 	Node_block* next_block;
 	int found = 0;
 	while(current_block) {
-		if(current_block->allocated == 1 && (size_t)current_block == (size_t)ptr){
+		if(current_block->allocated == 1 && (size_t)current_block == (size_t)ptr - sizeof(Node_block)){
 			found = 1;
 			break;
 		}
@@ -313,7 +313,7 @@ void worst_fit_dealloc(void *ptr)
 	Node_block* next_block;
 	int found = 0;
 	while(current_block) {
-		if(current_block->allocated == 1 && (size_t)current_block == (size_t)ptr){
+		if(current_block->allocated == 1 && (size_t)current_block == (size_t)ptr - sizeof(Node_block)){
 			found = 1;
 			break;
 		}
