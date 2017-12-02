@@ -80,21 +80,21 @@ int main(int argc, char *argv[])
 		while(1){
 			//Alloc
 			void* best_block[8];
-			best_block[0] =	best_fit_alloc((size_t)(rand() % 256));
+			best_block[0] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[0] == NULL) {  break; }
-			best_block[1] =	best_fit_alloc((size_t)(rand() % 256));
+			best_block[1] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[1] == NULL) {  break; }
-			best_block[2] =	best_fit_alloc((size_t)(rand() % 256));
+			best_block[2] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[2] == NULL) {  break; }
-			best_block[3] =	best_fit_alloc((size_t)(rand() % 256));
+			best_block[3] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[3] == NULL) {  break; }
-			best_block[4] =	best_fit_alloc((size_t)(rand() % 256));
+			best_block[4] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[4] == NULL) {  break; }
-			best_block[5] =	best_fit_alloc((size_t)(rand() % 256));
+			best_block[5] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[5] == NULL) {  break; }
-			best_block[6] =	best_fit_alloc((size_t)(rand() % 256));
+			best_block[6] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[6] == NULL) {  break; }
-			best_block[7] =	best_fit_alloc((size_t)(rand() % 256));
+			best_block[7] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[7] == NULL) {  break; }
 
 			//Dealloc
