@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	if ( algo == 0 ) {
-		best_fit_memory_init(1028);
+		best_fit_memory_init(1024);
 	
 while (1) {
 	//print_all_nodes_information_best();
@@ -103,7 +103,7 @@ printf("the extern frag for best fit for 256 bytes is %d\n", twofiftysix_bf);
 		// 	worst_fit_dealloc(q);	
 		// }
 		// num = worst_fit_count_extfrag(4);
-		worst_fit_memory_init(1028);
+		worst_fit_memory_init(1024);
 	
 while (1) {
 	//print_all_nodes_information_best();
