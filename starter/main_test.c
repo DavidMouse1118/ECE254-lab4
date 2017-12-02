@@ -98,7 +98,7 @@ printf("the extern frag for best fit for 256 bytes is %d\n", twofiftysix_bf);
 		worst_fit_memory_init(1024);	// initizae 1KB, worst fit
 
 		q = worst_fit_alloc(8);		// allocate 8B
-		printf("worst fit: q=%p\n", q);
+		printf("worst fit: q=%d\n", q);
 		if ( q != NULL ) {
 			worst_fit_dealloc(q);	
 		}
