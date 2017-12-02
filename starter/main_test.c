@@ -80,6 +80,7 @@ int main(int argc, char *argv[])
 		while(1){
 			//Alloc
 			void* best_block[8];
+			printf("wtf %d\n", rand() % 256 + 1);
 			best_block[0] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[0] == NULL) {  break; }
 			best_block[1] =	best_fit_alloc((size_t)(rand() % 256 + 1));
