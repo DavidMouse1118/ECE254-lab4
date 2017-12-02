@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 		best_fit_dealloc(new_block1);
 		printf("cccc%d\n", new_block1->block_size);
 		Node_block* new_block3 = (Node_block*)best_fit_alloc(5);
-		printf("cccc%d\n", new_block3->block_size)
+		printf("cccc%d\n", new_block3->block_size);
 		if(new_block3 == new_block1){
 			printf("Passed\n");
 		}
