@@ -37,28 +37,32 @@ int main(int argc, char *argv[])
 		if(best_fit_memory_init(32) == -1){
 			printf("Passed\n");
 		}
+
 		printf("\n========================= Best fit test 2: Input too big, fail to allocate block ===========================\n\n");
 		best_fit_memory_init(1024);
 		if(best_fit_alloc(2048) == NULL){
 			printf("Passed\n");
 		}
+
 		printf("\n========================= Best fit test 3: Allocate succeed, deallocate succeed ===========================\n\n");
 		Node_block* new_block = (Node_block*)best_fit_alloc(5);
+		printf("aaaaa%d\n", new_block->allocated);
+		printf("bbbbbb%d\n", new_block -> block_size);
 		if(new_block->allocated == 1 && new_block -> block_size == (size_t)40){
 			printf("Passed, one more\n");
 		}
 		best_fit_dealloc(new_block);
 		print_all_nodes_best();
+
 		printf("\n========================= Best fit test 4: Block not found, failed to deallocate ===========================\n\n");
 		Node_block* new_block1 = (Node_block*)best_fit_alloc(5);
 		Node_block* new_block2 = (Node_block*)best_fit_alloc(5);
 		best_fit_dealloc(new_block1);
-		print_all_nodes_best();
 		Node_block* new_block3 = (Node_block*)best_fit_alloc(5);
 		if(new_block3 == new_block1){
 			printf("Passed\n");
 		}
-		print_all_nodes_best();
+
 		printf("\n========================= Best fit test 5: Block not found, failed to deallocate ===========================\n\n");
 		best_fit_memory_init(1024);
 		p = best_fit_alloc(5);
@@ -66,10 +70,8 @@ int main(int argc, char *argv[])
 		Node_block* wrongBlock = (Node_block*)((size_t)p +1);
 		best_fit_dealloc(wrongBlock);
 		//block that has is not allocated, so dealloc will fail
-		print_all_nodes_best();
 		wrongBlock = (Node_block*)((size_t)p + sizeof(Node_block) + 5);
 		best_fit_dealloc(wrongBlock);
-		print_all_nodes_best();
 	
 // while (1) {
 // 	//print_all_nodes_information_best();
