@@ -75,34 +75,26 @@ int main(int argc, char *argv[])
 		best_fit_dealloc(q);
 		printf("Best fit test 5 Passed\n");
 		
-		printf("\n========================= Best fit test 5: External fragmentation test ===========================\n\n");
+		printf("\n========================= Best fit test 6: External fragmentation test ===========================\n\n");
 		best_fit_memory_init(16384);
 		int i;
 		while(1){
 			//Alloc
 			void* best_block[8];
-			printf("wtf %d\n", rand() % 256 + 1);
 			best_block[0] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[0] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			best_block[1] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[1] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			best_block[2] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[2] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			best_block[3] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[3] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			best_block[4] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[4] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			best_block[5] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[5] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			best_block[6] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[6] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			best_block[7] =	best_fit_alloc((size_t)(rand() % 256 + 1));
 			if (best_block[7] == NULL) {  break; }
 
@@ -112,23 +104,14 @@ int main(int argc, char *argv[])
 			best_fit_dealloc(best_block[4]);
 			best_fit_dealloc(best_block[6]);
 		}
-		int four_bf, eight_bf, sixteen_bf, thirtytwo_bf, sixtyfour_bf, onetwentyeight_bf, twofiftysix_bf;
 
-four_bf = best_fit_count_extfrag(4);
-eight_bf = best_fit_count_extfrag(8);
-sixteen_bf = best_fit_count_extfrag(16);
-thirtytwo_bf = best_fit_count_extfrag(32);
-sixtyfour_bf = best_fit_count_extfrag(64);
-onetwentyeight_bf = best_fit_count_extfrag(128);
-twofiftysix_bf = best_fit_count_extfrag(256);
-
-printf("the extern frag for best fit for four bytes is %d\n", four_bf);
-printf("the extern frag for best fit for eight bytes is %d\n", eight_bf);
-printf("the extern frag for best fit for 16 bytes is %d\n", sixteen_bf);
-printf("the extern frag for best fit for 32 bytes is %d\n", thirtytwo_bf);
-printf("the extern frag for best fit for 64 bytes is %d\n", sixtyfour_bf);
-printf("the extern frag for best fit for 128 bytes is %d\n", onetwentyeight_bf);
-printf("the extern frag for best fit for 256 bytes is %d\n", twofiftysix_bf);
+		printf("The external fragmentation memory blocks less than 4 bytes is %d\n", best_fit_count_extfrag(4));
+		printf("The external fragmentation memory blocks less than 8 bytes is %d\n", best_fit_count_extfrag(8));
+		printf("The external fragmentation memory blocks less than 16 bytes is %d\n", best_fit_count_extfrag(16);
+		printf("The external fragmentation memory blocks less than 32 bytes is %d\n", best_fit_count_extfrag(32));
+		printf("The external fragmentation memory blocks less than 64 bytes is %d\n", best_fit_count_extfrag(64));
+		printf("The external fragmentation memory blocks less than 128 bytes is %d\n", best_fit_count_extfrag(128));
+		printf("The external fragmentation memory blocks less than 256 bytes is %d\n", best_fit_count_extfrag(256));
 // while (1) {
 // 	//print_all_nodes_information_best();
 // 	void* four_1 =	best_fit_alloc(5);
@@ -189,14 +172,6 @@ printf("the extern frag for best fit for 256 bytes is %d\n", twofiftysix_bf);
 // printf("the extern frag for best fit for 128 bytes is %d\n", onetwentyeight_bf);
 // printf("the extern frag for best fit for 256 bytes is %d\n", twofiftysix_bf);
 	} else if ( algo == 1 ) {
-		// worst_fit_memory_init(1024);	// initizae 1KB, worst fit
-
-		// q = worst_fit_alloc(8);		// allocate 8B
-		// printf("worst fit: q=%d\n", q);
-		// if ( q != NULL ) {
-		// 	worst_fit_dealloc(q);	
-		// }
-		// num = worst_fit_count_extfrag(4);
 		printf("\n========================= Worst fit test 1: Input too small, fail to init memory ===========================\n\n");
 		if(worst_fit_memory_init(32) == -1){
 			printf("Worst fit test 1 Passed\n");
@@ -244,28 +219,20 @@ printf("the extern frag for best fit for 256 bytes is %d\n", twofiftysix_bf);
 		while(1){
 			//Alloc
 			void* worst_block[8];
-			printf("wtf %d\n", rand() % 256 + 1);
 			worst_block[0] =	worst_fit_alloc((size_t)(rand() % 256 + 1));
 			if (worst_block[0] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			worst_block[1] =	worst_fit_alloc((size_t)(rand() % 256 + 1));
 			if (worst_block[1] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			worst_block[2] =	worst_fit_alloc((size_t)(rand() % 256 + 1));
 			if (worst_block[2] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			worst_block[3] =	worst_fit_alloc((size_t)(rand() % 256 + 1));
 			if (worst_block[3] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			worst_block[4] =	worst_fit_alloc((size_t)(rand() % 256 + 1));
 			if (worst_block[4] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			worst_block[5] =	worst_fit_alloc((size_t)(rand() % 256 + 1));
 			if (worst_block[5] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			worst_block[6] =	worst_fit_alloc((size_t)(rand() % 256 + 1));
 			if (worst_block[6] == NULL) {  break; }
-			printf("wtf %d\n", rand() % 256 + 1);
 			worst_block[7] =	worst_fit_alloc((size_t)(rand() % 256 + 1));
 			if (worst_block[7] == NULL) {  break; }
 
@@ -275,23 +242,14 @@ printf("the extern frag for best fit for 256 bytes is %d\n", twofiftysix_bf);
 			worst_fit_dealloc(worst_block[4]);
 			worst_fit_dealloc(worst_block[6]);
 		}
-		int four_bf, eight_bf, sixteen_bf, thirtytwo_bf, sixtyfour_bf, onetwentyeight_bf, twofiftysix_bf;
 
-four_bf = worst_fit_count_extfrag(4);
-eight_bf = worst_fit_count_extfrag(8);
-sixteen_bf = worst_fit_count_extfrag(16);
-thirtytwo_bf = worst_fit_count_extfrag(32);
-sixtyfour_bf = worst_fit_count_extfrag(64);
-onetwentyeight_bf = worst_fit_count_extfrag(128);
-twofiftysix_bf = worst_fit_count_extfrag(256);
-
-printf("the extern frag for worst fit for four bytes is %d\n", four_bf);
-printf("the extern frag for worst fit for eight bytes is %d\n", eight_bf);
-printf("the extern frag for worst fit for 16 bytes is %d\n", sixteen_bf);
-printf("the extern frag for worst fit for 32 bytes is %d\n", thirtytwo_bf);
-printf("the extern frag for worst fit for 64 bytes is %d\n", sixtyfour_bf);
-printf("the extern frag for worst fit for 128 bytes is %d\n", onetwentyeight_bf);
-printf("the extern frag for worst fit for 256 bytes is %d\n", twofiftysix_bf);
+		printf("The external fragmentation memory blocks less than 4 bytes is %d\n", worst_fit_count_extfrag(4));
+		printf("The external fragmentation memory blocks less than 8 bytes is %d\n", worst_fit_count_extfrag(8));
+		printf("The external fragmentation memory blocks less than 16 bytes is %d\n", worst_fit_count_extfrag(16));
+		printf("The external fragmentation memory blocks less than 32 bytes is %d\n", worst_fit_count_extfrag(32));
+		printf("The external fragmentation memory blocks less than 64 bytes is %d\n", worst_fit_count_extfrag(64));
+		printf("The external fragmentation memory blocks less than 128 bytes is %d\n", worst_fit_count_extfrag(128));
+		printf("The external fragmentation memory blocks less than 256 bytes is %d\n", worst_fit_count_extfrag(256));
 // 		worst_fit_memory_init(1024);
 	
 // while (1) {
