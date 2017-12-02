@@ -111,10 +111,5 @@ printf("the extern frag for best fit for 256 bytes is %d\n", twofiftysix_bf);
 	printf("num = %d\n", num);
 
 	return 0;
-
-	
-
-
-	return 0;
 }
 
