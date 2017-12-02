@@ -173,7 +173,7 @@ void *worst_fit_alloc(size_t size)
 
 	Node_block* worst_block = NULL;
 	Node_block* new_block;
-	printf("omg\n");
+
 	//calculate size
 	if(size % 4 != 0){
 		size = size + (4 - size % 4);
@@ -386,7 +386,6 @@ int worst_fit_count_extfrag(size_t size)
 		current_block = current_block->next;
 	}
 	return count;
-
 }
 
 void print_all_nodes_best(){
