@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
 
 		printf("The external fragmentation memory blocks less than 4 bytes is %d\n", best_fit_count_extfrag(4));
 		printf("The external fragmentation memory blocks less than 8 bytes is %d\n", best_fit_count_extfrag(8));
-		printf("The external fragmentation memory blocks less than 16 bytes is %d\n", best_fit_count_extfrag(16);
+		printf("The external fragmentation memory blocks less than 16 bytes is %d\n", best_fit_count_extfrag(16));
 		printf("The external fragmentation memory blocks less than 32 bytes is %d\n", best_fit_count_extfrag(32));
 		printf("The external fragmentation memory blocks less than 64 bytes is %d\n", best_fit_count_extfrag(64));
 		printf("The external fragmentation memory blocks less than 128 bytes is %d\n", best_fit_count_extfrag(128));
