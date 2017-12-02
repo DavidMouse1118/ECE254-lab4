@@ -48,7 +48,6 @@ int main(int argc, char *argv[])
 
 		printf("\n========================= Best fit test 3: Allocate succeed, deallocate succeed ===========================\n\n");
 		void* p = best_fit_alloc(5);
-		printf("aaaaa%d\n", p);
 		if((size_t)p == (size_t)head + 32){
 			printf("Best fit test 3 Passed\n");
 		}

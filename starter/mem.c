@@ -381,18 +381,19 @@ int worst_fit_count_extfrag(size_t size)
 }
 
 void print_all_nodes(int type){
-	Node_block* current_block;
+	Node_block* head;
 	if(type == 0){
-		current_block = best_head;
+		head = best_head;
 	} else {
-		current_block = worst_head;
+		head = worst_head;
 	}
+	Node_block* current_block = head;
 
 	printf("\n************ PRINTING ALL NODES INFO ************\n\n");
 	
 	int count = 0;
 	while(current_block){
-		printf("Node %d : %d - %d , size %d, is_allocated %d\n", count, (size_t)current_block - (size_t)best_head, (size_t)current_block + current_block->block_size - 1, current_block->block_size, current_block->allocated);
+		printf("Node %d : %d - %d , size %d, is_allocated %d\n", count, (size_t)current_block - (size_t)head, (size_t)current_block - (size_t)head + current_block->block_size - 1, current_block->block_size, current_block->allocated);
 		current_block = current_block->next;
 		count++;
 	}
