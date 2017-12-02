@@ -182,19 +182,17 @@ void *worst_fit_alloc(size_t size)
 
 	//Find worst block
 	while(current_block){
-		if(current_block->allocated == 0){
-			if(current_block->block_size <= size){
-				if(!worst_block){
-					worst_block = current_block;
-				}
-				if (current_block->block_size > worst_block->block_size){
-					worst_block = current_block;
-				}
+		if(current_block->allocated == 0 && current_block->block_size >= size){
+			if(!worst_block){
+				worst_block = current_block;
+			}
+			if (current_block->block_size > worst_block->block_size){
+				worst_block = current_block;
 			}
 		}
-
 		current_block = current_block->next;
 	}
+
 	//if worst node doesnt exit, return
 	if(!worst_block){
 		return NULL;
