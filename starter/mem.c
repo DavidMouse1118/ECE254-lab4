@@ -458,7 +458,7 @@ int main(int argc, char *argv[])
 
 	// return 0;
 
-	best_fit_memory_init(2048);
+	best_fit_memory_init(4096);
 	
 while (1) {
 	//print_all_nodes_information_best();
