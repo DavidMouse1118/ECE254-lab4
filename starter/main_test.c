@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 		}
 		best_fit_dealloc(new_block);
 		print_all_nodes_best();
-		printf("\n========================= Best fit test 3: Block not found, failed to deallocate ===========================\n\n");
+		printf("\n========================= Best fit test 4: Block not found, failed to deallocate ===========================\n\n");
 		Node_block* new_block1 = (Node_block*)best_fit_alloc(5);
 		Node_block* new_block2 = (Node_block*)best_fit_alloc(5);
 		best_fit_dealloc(new_block1);
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 			printf("Passed\n");
 		}
 		print_all_nodes_best();
-		printf("\n========================= Best fit test 3: Block not found, failed to deallocate ===========================\n\n");
+		printf("\n========================= Best fit test 5: Block not found, failed to deallocate ===========================\n\n");
 		best_fit_memory_init(1024);
 		p = best_fit_alloc(5);
 		//wrong block
