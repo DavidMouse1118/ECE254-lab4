@@ -340,7 +340,7 @@ void print_all_nodes(int type){
 	
 	int count = 0;
 	while(current_block){
-		printf("Node %d : %d - %d , size %d, is_allocated %d\n", count, (int)current_block - (int)head, (int)current_block - (int)head + (int)(current_block->block_size) - 1, (int)(current_block->block_size), current_block->allocated);
+		printf("Node %d : %d - %d , size %d, is_allocated %d\n", count, (int)((size_t)current_block - (size_t)head), (int)((size_t)current_block - (size_t)head + current_block->block_size - 1), (int)(current_block->block_size), current_block->allocated);
 		current_block = current_block->next;
 		count++;
 	}
