@@ -64,6 +64,8 @@ int main(int argc, char *argv[])
 			printf("Best fit test 4 Passed\n");
 		}
 
+		print_all_nodes(algo);
+
 		printf("\n========================= Best fit test 5: Block not found, failed to deallocate ===========================\n\n");
 		best_fit_memory_init(1024);
 		p = best_fit_alloc(5);
