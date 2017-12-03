@@ -26,9 +26,9 @@ int main(int argc, char *argv[])
 	srand(time(NULL));//random generator seed
 
 	if (argc != 2) {
-		fprintf(stderr, "Usage: %s <0/1>. 0 for best fit and 1 for worst fit \n", argv[0]);
+		fprintf(stderr, "Usage: %s <0/1>. 0 for best fit, 1 for worst fit and 2 for external fragmentation\n", argv[0]);
 		exit (1);
-	} else if (!strcmp(argv[1], "1") || !strcmp(argv[1], "0")) {
+	} else if (!strcmp(argv[1], "2") || !strcmp(argv[1], "1") || !strcmp(argv[1], "0")) {
 		algo = atoi(argv[1]);
 	} else {
 		fprintf(stderr, "Invalid argument, please specify 0 or 1\n");
