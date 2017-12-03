@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 		printf("Best fit test 5 Passed\n");
 		
 		printf("\n========================= Best fit test 6: External fragmentation test ===========================\n\n");
-		best_fit_memory_init(1024);
+		best_fit_memory_init(10240);
 		int i;
 		while(1){
 			//Alloc
@@ -214,7 +214,7 @@ int main(int argc, char *argv[])
 		printf("Worst fit test 5 Passed\n");
 
 		printf("\n========================= Worst fit test 6: External fragmentation test ===========================\n\n");
-		worst_fit_memory_init(1024);
+		worst_fit_memory_init(10240);
 		int i;
 		while(1){
 			//Alloc
