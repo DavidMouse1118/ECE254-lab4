@@ -42,7 +42,7 @@ int best_fit_memory_init(size_t size)
 	if(!best_head){
 		return -1;
 	}
-	printf("allocated memory block start from %d\n", best_head);
+	//printf("allocated memory block start from %d\n", (size_t)best_head);
 	best_head->allocated = 0;
 	best_head->block_size = size;
 	best_head->next = NULL;
@@ -62,7 +62,7 @@ int worst_fit_memory_init(size_t size)
 	if(!worst_head){
 		return -1;
 	}
-	printf("allcated memory block start from %d\n", worst_head);
+	//printf("allcated memory block start from %d\n", (size_t)worst_head);
 	worst_head -> allocated = 0;
 	worst_head -> block_size = size;
 	worst_head -> next = NULL;
@@ -107,7 +107,7 @@ void *best_fit_alloc(size_t size)
 		return NULL;
 	}
 
-	printf("allocted size %d in block %d\n", size, best_block);
+	//printf("allocted size %d in block %d\n", size, (size_t)best_block);
 	//exact allocatikon
 	if(best_block->block_size == size){
 		best_block->allocated = 1;
@@ -175,7 +175,7 @@ void *worst_fit_alloc(size_t size)
 		return NULL;
 	}
 
-	printf("allocted size %d in block %d\n", size, worst_block);
+	//printf("allocted size %d in block %d\n", size, worst_block);
 	//exact allocatikon
 	if(worst_block->block_size == size){
 		worst_block->allocated = 1;
