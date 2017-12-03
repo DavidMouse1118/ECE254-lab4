@@ -84,7 +84,7 @@ void *best_fit_alloc(size_t size)
 
 	//Find best block
 	while(current_block){
-		if(current_block->allocated == 0 && current_block->block_size >= size){
+		if(current_block->allocated == 0 && current_block->block_size >= size + sizeof(Node_block)){
 			if(!best_block){
 				best_block = current_block;
 			}
@@ -105,12 +105,6 @@ void *best_fit_alloc(size_t size)
 	if(best_block->block_size == size){
 		best_block->allocated = 1;
 	}
-	//internal fragementation
-	// else if((best_block->block_size - size) <= sizeof(Node_block)){
-	// 	printf("fragementation\n");
-	// 	//updated old block
-	// 	best_block->allocated = 1;
-	// }
 	//split with new block
 	else {
 		//create new block
@@ -157,7 +151,7 @@ void *worst_fit_alloc(size_t size)
 
 	//Find worst block
 	while(current_block){
-		if(current_block->allocated == 0 && current_block->block_size >= size){
+		if(current_block->allocated == 0 && current_block->block_size >= size + sizeof(Node_block)){
 			if(!worst_block){
 				worst_block = current_block;
 			}
@@ -177,12 +171,6 @@ void *worst_fit_alloc(size_t size)
 	printf("allocted size %d in block %d\n", size, worst_block);
 	//exact allocatikon
 	if(worst_block->block_size == size){
-		worst_block->allocated = 1;
-	}
-	//internal fragementation
-	else if((worst_block->block_size - size) <= sizeof(Node_block)){
-		printf("fragementation\n");
-		//updated old block
 		worst_block->allocated = 1;
 	}
 	//split with new block
