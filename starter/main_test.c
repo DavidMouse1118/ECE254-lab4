@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <time.h>
 /* non-system provided header files. 
    Do not include more user-defined header files here
  */
@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
 	int algo = 0; // default algorithm to test is best fit  
 	void *p, *q;
 	void* head;
+	srand(time(NULL));//random generator seed
 
 	if (argc != 2) {
 		fprintf(stderr, "Usage: %s <0/1>. 0 for best fit and 1 for worst fit \n", argv[0]);
