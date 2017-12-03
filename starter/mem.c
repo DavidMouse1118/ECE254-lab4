@@ -84,7 +84,7 @@ void *best_fit_alloc(size_t size)
 
 	//Find best block
 	while(current_block){
-		if(current_block->allocated == 0 && (current_block->block_size >= size + sizeof(Node_block) || current_block->block_size == size)){
+		if(current_block->allocated == 0 && (current_block->block_size > size + sizeof(Node_block) || current_block->block_size == size)){
 			if(!best_block){
 				best_block = current_block;
 			}
@@ -151,7 +151,7 @@ void *worst_fit_alloc(size_t size)
 
 	//Find worst block
 	while(current_block){
-		if(current_block->allocated == 0 && (current_block->block_size >= size + sizeof(Node_block) || current_block->block_size == size)){
+		if(current_block->allocated == 0 && (current_block->block_size > size + sizeof(Node_block) || current_block->block_size == size)){
 			if(!worst_block){
 				worst_block = current_block;
 			}
