@@ -63,7 +63,6 @@ int main(int argc, char *argv[])
 		if((size_t)p == (size_t)head + 32){
 			printf("Best fit test 4 Passed\n");
 		}
-
 		print_all_nodes(algo);
 
 		printf("\n========================= Best fit test 5: Block not found, failed to deallocate ===========================\n\n");
@@ -76,46 +75,6 @@ int main(int argc, char *argv[])
 		q = (void*)((size_t)p + 32 + 5);
 		best_fit_dealloc(q);
 		printf("Best fit test 5 Passed\n");
-		
-		printf("\n========================= Best fit test 6: External fragmentation test ===========================\n\n");
-		best_fit_memory_init(102400);
-		while(1){
-			//Alloc
-			void* best_block[8];
-			best_block[0] =	best_fit_alloc((size_t)(rand() % 512 + 1));
-			if (best_block[0] == NULL) {  break; }
-			best_block[1] =	best_fit_alloc((size_t)(rand() % 512 + 1));
-			if (best_block[1] == NULL) {  break; }
-			best_block[2] =	best_fit_alloc((size_t)(rand() % 512 + 1));
-			if (best_block[2] == NULL) {  break; }
-			best_block[3] =	best_fit_alloc((size_t)(rand() % 512 + 1));
-			if (best_block[3] == NULL) {  break; }
-			best_block[4] =	best_fit_alloc((size_t)(rand() % 512 + 1));
-			if (best_block[4] == NULL) {  break; }
-			best_block[5] =	best_fit_alloc((size_t)(rand() % 512 + 1));
-			if (best_block[5] == NULL) {  break; }
-			best_block[6] =	best_fit_alloc((size_t)(rand() % 512 + 1));
-			if (best_block[6] == NULL) {  break; }
-			best_block[7] =	best_fit_alloc((size_t)(rand() % 512 + 1));
-			if (best_block[7] == NULL) {  break; }
-
-			//Dealloc
-			best_fit_dealloc(best_block[0]);
-			best_fit_dealloc(best_block[2]);
-			best_fit_dealloc(best_block[4]);
-			best_fit_dealloc(best_block[6]);
-		}
-
-		printf("The external fragmentation memory blocks less than 4 bytes is %d\n", best_fit_count_extfrag(4));
-		printf("The external fragmentation memory blocks less than 8 bytes is %d\n", best_fit_count_extfrag(8));
-		printf("The external fragmentation memory blocks less than 16 bytes is %d\n", best_fit_count_extfrag(16));
-		printf("The external fragmentation memory blocks less than 32 bytes is %d\n", best_fit_count_extfrag(32));
-		printf("The external fragmentation memory blocks less than 64 bytes is %d\n", best_fit_count_extfrag(64));
-		printf("The external fragmentation memory blocks less than 128 bytes is %d\n", best_fit_count_extfrag(128));
-		printf("The external fragmentation memory blocks less than 256 bytes is %d\n", best_fit_count_extfrag(256));
-		printf("The external fragmentation memory blocks less than 512 bytes is %d\n", best_fit_count_extfrag(512));
-		//printf("The external fragmentation memory blocks less than 1024 bytes is %d\n", best_fit_count_extfrag(1024));
-
 // best_fit_memory_init(1024);
 // while (1) {
 // 	//print_all_nodes_information_best();
@@ -205,6 +164,7 @@ int main(int argc, char *argv[])
 		if((size_t)p == (size_t)head + 40 + 40 + 32){
 			printf("Worst fit test 4 Passed\n");
 		}
+		print_all_nodes(algo);
 
 		printf("\n========================= Worst fit test 5: Block not found, failed to deallocate ===========================\n\n");
 		worst_fit_memory_init(1024);
@@ -254,7 +214,6 @@ int main(int argc, char *argv[])
 		printf("The external fragmentation memory blocks less than 128 bytes is %d\n", worst_fit_count_extfrag(128));
 		printf("The external fragmentation memory blocks less than 256 bytes is %d\n", worst_fit_count_extfrag(256));
 		printf("The external fragmentation memory blocks less than 512 bytes is %d\n", worst_fit_count_extfrag(512));
-		//printf("The external fragmentation memory blocks less than 1024 bytes is %d\n", worst_fit_count_extfrag(1024));
 // 		worst_fit_memory_init(1024);
 	
 // while (1) {
@@ -316,6 +275,87 @@ int main(int argc, char *argv[])
 // printf("the extern frag for worst fit for 64 bytes is %d\n", sixtyfour_bf);
 // printf("the extern frag for worst fit for 128 bytes is %d\n", onetwentyeight_bf);
 // printf("the extern frag for worst fit for 256 bytes is %d\n", twofiftysix_bf);
+	} else if(algo == 2){
+		printf("\n========================= External fragmentation test ===========================\n\n");
+		//Initialize 102400 bytes memory space. 
+		//Using a while loop to allocate and deallocate memory blocks repeatedly. More specifically, in each iteration, we allocate 8 memory blocks with a random size from 1 - 512 bytes and deallocate one every two blocks of memory. The while loop will break when one allocation failed.
+		//Check the external fragmentation for memory block size less than 4 bytes, 8 bytes, 16 bytes, 32 bytes, 64 bytes, 128 bytes, 256 bytes, 512 bytes. These will be the experimental data.
+
+		best_fit_memory_init(102400);
+		while(1){
+			//Alloc
+			void* best_block[8];
+			best_block[0] =	best_fit_alloc((size_t)(rand() % 512 + 1));
+			if (best_block[0] == NULL) {  break; }
+			best_block[1] =	best_fit_alloc((size_t)(rand() % 512 + 1));
+			if (best_block[1] == NULL) {  break; }
+			best_block[2] =	best_fit_alloc((size_t)(rand() % 512 + 1));
+			if (best_block[2] == NULL) {  break; }
+			best_block[3] =	best_fit_alloc((size_t)(rand() % 512 + 1));
+			if (best_block[3] == NULL) {  break; }
+			best_block[4] =	best_fit_alloc((size_t)(rand() % 512 + 1));
+			if (best_block[4] == NULL) {  break; }
+			best_block[5] =	best_fit_alloc((size_t)(rand() % 512 + 1));
+			if (best_block[5] == NULL) {  break; }
+			best_block[6] =	best_fit_alloc((size_t)(rand() % 512 + 1));
+			if (best_block[6] == NULL) {  break; }
+			best_block[7] =	best_fit_alloc((size_t)(rand() % 512 + 1));
+			if (best_block[7] == NULL) {  break; }
+
+			//Dealloc
+			best_fit_dealloc(best_block[0]);
+			best_fit_dealloc(best_block[2]);
+			best_fit_dealloc(best_block[4]);
+			best_fit_dealloc(best_block[6]);
+		}
+
+		worst_fit_memory_init(102400);
+		while(1){
+			//Alloc
+			void* worst_block[8];
+			worst_block[0] = worst_fit_alloc((size_t)(rand() % 512 + 1));
+			if (worst_block[0] == NULL) {  break; }
+			worst_block[1] = worst_fit_alloc((size_t)(rand() % 512 + 1));
+			if (worst_block[1] == NULL) {  break; }
+			worst_block[2] = worst_fit_alloc((size_t)(rand() % 512 + 1));
+			if (worst_block[2] == NULL) {  break; }
+			worst_block[3] = worst_fit_alloc((size_t)(rand() % 512 + 1));
+			if (worst_block[3] == NULL) {  break; }
+			worst_block[4] = worst_fit_alloc((size_t)(rand() % 512 + 1));
+			if (worst_block[4] == NULL) {  break; }
+			worst_block[5] = worst_fit_alloc((size_t)(rand() % 512 + 1));
+			if (worst_block[5] == NULL) {  break; }
+			worst_block[6] = worst_fit_alloc((size_t)(rand() % 512 + 1));
+			if (worst_block[6] == NULL) {  break; }
+			worst_block[7] = worst_fit_alloc((size_t)(rand() % 512 + 1));
+			if (worst_block[7] == NULL) {  break; }
+
+			//Dealloc
+			worst_fit_dealloc(worst_block[0]);
+			worst_fit_dealloc(worst_block[2]);
+			worst_fit_dealloc(worst_block[4]);
+			worst_fit_dealloc(worst_block[6]);
+		}
+
+		printf("\n========================= Best fit external fragmentation ===========================\n\n");
+		printf("The external fragmentation memory blocks less than 4 bytes is %d\n", best_fit_count_extfrag(4));
+		printf("The external fragmentation memory blocks less than 8 bytes is %d\n", best_fit_count_extfrag(8));
+		printf("The external fragmentation memory blocks less than 16 bytes is %d\n", best_fit_count_extfrag(16));
+		printf("The external fragmentation memory blocks less than 32 bytes is %d\n", best_fit_count_extfrag(32));
+		printf("The external fragmentation memory blocks less than 64 bytes is %d\n", best_fit_count_extfrag(64));
+		printf("The external fragmentation memory blocks less than 128 bytes is %d\n", best_fit_count_extfrag(128));
+		printf("The external fragmentation memory blocks less than 256 bytes is %d\n", best_fit_count_extfrag(256));
+		printf("The external fragmentation memory blocks less than 512 bytes is %d\n", best_fit_count_extfrag(512));
+
+		printf("\n========================= Worst fit external fragmentation ===========================\n\n");
+		printf("The external fragmentation memory blocks less than 4 bytes is %d\n", worst_fit_count_extfrag(4));
+		printf("The external fragmentation memory blocks less than 8 bytes is %d\n", worst_fit_count_extfrag(8));
+		printf("The external fragmentation memory blocks less than 16 bytes is %d\n", worst_fit_count_extfrag(16));
+		printf("The external fragmentation memory blocks less than 32 bytes is %d\n", worst_fit_count_extfrag(32));
+		printf("The external fragmentation memory blocks less than 64 bytes is %d\n", worst_fit_count_extfrag(64));
+		printf("The external fragmentation memory blocks less than 128 bytes is %d\n", worst_fit_count_extfrag(128));
+		printf("The external fragmentation memory blocks less than 256 bytes is %d\n", worst_fit_count_extfrag(256));
+		printf("The external fragmentation memory blocks less than 512 bytes is %d\n", worst_fit_count_extfrag(512));
 	} else {
 		fprintf(stderr, "Should not reach here!\n");
 		exit(1);
