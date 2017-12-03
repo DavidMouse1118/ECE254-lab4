@@ -16,7 +16,8 @@
  */
 #include "mem.h"
 
-
+void print_all_nodes(int type);
+void* get_head(int type);
 
 int main(int argc, char *argv[])
 {
