@@ -106,11 +106,11 @@ void *best_fit_alloc(size_t size)
 		best_block->allocated = 1;
 	}
 	//internal fragementation
-	else if((best_block->block_size - size) <= sizeof(Node_block)){
-		printf("fragementation\n");
-		//updated old block
-		best_block->allocated = 1;
-	}
+	// else if((best_block->block_size - size) <= sizeof(Node_block)){
+	// 	printf("fragementation\n");
+	// 	//updated old block
+	// 	best_block->allocated = 1;
+	// }
 	//split with new block
 	else {
 		//create new block
