@@ -12,6 +12,13 @@
 #include "mem.h"
 
 /* defines */
+struct Node_block {
+	//1 is allocated, 0 is not allocated
+	int allocated;
+	size_t block_size;
+	struct Node_block* next;
+	struct Node_block* prev;
+};
 
 /* global varaiables */
 //The node head of the block linked list (best fit)
