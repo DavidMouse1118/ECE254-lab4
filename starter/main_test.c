@@ -16,6 +16,13 @@
  */
 #include "mem.h"
 
+struct Node_block {
+	//1 is allocated, 0 is not allocated
+	int allocated;
+	size_t block_size;
+	struct Node_block* next;
+	struct Node_block* prev;
+};
 
 
 int main(int argc, char *argv[])

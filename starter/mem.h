@@ -10,15 +10,6 @@
 
 #include <stddef.h>
 
-struct Node_block {
-	//1 is allocated, 0 is not allocated
-	int allocated;
-	size_t block_size;
-	struct Node_block* next;
-	struct Node_block* prev;
-};
-
-
 /* memory initializers */
 int best_fit_memory_init(size_t size);
 int worst_fit_memory_init(size_t size);
@@ -36,9 +27,5 @@ void worst_fit_dealloc(void *ptr);
 /* count how many contiguous bytes are less than 32B */ 
 int best_fit_count_extfrag(size_t size);
 int worst_fit_count_extfrag(size_t size);
-
-
-void print_all_nodes(int type);
-void* get_head(int type);
 
 #endif // !MEM_H_
