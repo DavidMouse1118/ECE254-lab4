@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 		q = (void*)((size_t)p +1);
 		best_fit_dealloc(q);
 		//block that has is not allocated, so dealloc will fail
-		q = (void*)((size_t)p + sizeof(Node_block) + 5);
+		q = (void*)((size_t)p + 32 + 5);
 		best_fit_dealloc(q);
 		printf("Best fit test 5 Passed\n");
 		
