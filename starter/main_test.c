@@ -21,7 +21,6 @@ void* get_head(int type);
 
 int main(int argc, char *argv[])
 {
-	int num = 0;
 	int algo = 0; // default algorithm to test is best fit  
 	void *p, *q;
 	void* head;
@@ -49,7 +48,7 @@ int main(int argc, char *argv[])
 		}
 
 		printf("\n========================= Best fit test 3: Allocate succeed, deallocate succeed ===========================\n\n");
-		void* p = best_fit_alloc(5);
+		p = best_fit_alloc(5);
 		if((size_t)p == (size_t)head + 32){
 			printf("Best fit test 3 Passed\n");
 		}
@@ -189,7 +188,7 @@ int main(int argc, char *argv[])
 		}
 
 		printf("\n========================= Worst fit test 3: Allocate succeed, deallocate succeed ===========================\n\n");
-		void* p = worst_fit_alloc(5);
+		p = worst_fit_alloc(5);
 		if((size_t)p == (size_t)head + 32){
 			printf("Worst fit test 3 Passed\n");
 		}
